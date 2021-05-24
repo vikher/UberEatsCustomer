@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.AddNewAddressPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <AbsoluteLayout>
+        <StackLayout
+            Padding="10"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                              Light={StaticResource Background_Light}}">
+            <ScrollView>
+                <StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Text="Calle"
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Keyboard="Text"
+                            Placeholder="Calle"
+                            Text="{Binding Street}" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Text="Numero "
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Keyboard="Numeric"
+                            Placeholder="Numero"
+                            Text="{Binding Number}" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Text="Colonia"
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Placeholder="Colonia"
+                            Text="{Binding Colonia}" />
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Text="Ciudad"
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Placeholder="Ciudad"
+                            Text="{Binding Ciudad}" />
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Text="Estado"
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Placeholder="Estado"
+                            Text="{Binding State}" />
+                        <Label
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            Text="Codigo Postal"
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            Keyboard="Numeric"
+                            Placeholder="Codigo Postal"
+                            Text="{Binding PostalCode}" />
+                        <Label
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            Text="Tipo de domicilio"
+                            VerticalOptions="Center" />
+                        <Picker
+                            Title="Tipo de domicilio"
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            ItemDisplayBinding="{Binding Name}"
+                            ItemsSource="{Binding AddressTypes}"
+                            SelectedItem="{Binding AddressType}" />
+                        <Label
+                            Grid.Row="7"
+                            Grid.Column="0"
+                            Text="Referencias"
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Row="7"
+                            Grid.Column="1"
+                            Placeholder="Referencias"
+                            Text="{Binding References}" />
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+            <Button
+                Command="{Binding SaveAddressCommand}"
+                IsEnabled="{Binding IsEnabled}"
+                Text="Guardar" />
+        </StackLayout>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center" />
+    </AbsoluteLayout>
+</ContentPage>

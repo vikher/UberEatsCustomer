@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.CreditBalance.CreditBalancePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <Grid>
+        <StackLayout
+            Padding="10"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{StaticResource background_page}">
+            <CollectionView
+                ItemsSource="{Binding CreditBalance}"
+                SelectedItem="{Binding SelectedCb}"
+                SelectionChangedCommand="{Binding CBSelectedCommand}"
+                SelectionMode="Single">
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label
+                            Margin="10,25,10,10"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Center"
+                            Text="No hay Restaurantes" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Margin="5"
+                            BackgroundColor="White"
+                            CornerRadius="5">
+                            <StackLayout>
+                                <Grid
+                                    Grid.Row="2"
+                                    Padding="25,5"
+                                    RowSpacing="0">
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Text="{Binding NameStatus}" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Text="{Binding Start_date}" />
+                                </Grid>
+                                <BoxView
+                                    BackgroundColor="Black"
+                                    HeightRequest="1"
+                                    HorizontalOptions="FillAndExpand" />
+                                <Label Text="{Binding Id, StringFormat='Pedido No. {0}'}" />
+                                <BoxView
+                                    BackgroundColor="Black"
+                                    HeightRequest="1"
+                                    HorizontalOptions="FillAndExpand" />
+                                <Grid
+                                    Grid.Row="2"
+                                    Padding="25,5"
+                                    RowSpacing="0">
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Text="{Binding Total, StringFormat='Total: ${0}'}" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Text="{Binding Quantity, StringFormat='Cantidad: {0}'}" />
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button
+                Command="{Binding ShareCommand}"
+                IsEnabled="{Binding IsEnabled}"
+                Text="Compartir" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

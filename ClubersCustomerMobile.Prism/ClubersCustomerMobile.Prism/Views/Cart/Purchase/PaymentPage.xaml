@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.Cart.Purchase.PaymentPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fastEntry="clr-namespace:XamarinFastEntrySample.FastEntry;assembly=XamarinFastEntry.Behaviors"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="WhiteSmoke"
+    NavigationPage.HasNavigationBar="True"
+    Visual="Material">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid
+                Padding="20"
+                ColumnSpacing="20"
+                VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    FontAttributes="Bold"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Braintree "
+                   />
+
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Text="Card Number" />
+
+                <Entry
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,0,10"
+                    BackgroundColor="Transparent"
+                    Keyboard="Numeric"
+                    Text="{Binding CardInfo.CardNumber}">
+                    <Entry.Behaviors>
+                        <fastEntry:XamarinFastEntryBehaviour Mask="#### #### #### ####" MaxLength="19" />
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Text="Expiry" />
+
+                <Entry
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    BackgroundColor="Transparent"
+                    Keyboard="Numeric"
+                    Placeholder="MM/YY"
+                    Text="{Binding CardInfo.Expiry}">
+                    <Entry.Behaviors>
+                        <fastEntry:XamarinFastEntryBehaviour Mask="##/##" MaxLength="19" />
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Text="CVV" />
+
+                <Entry
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    BackgroundColor="Transparent"
+                    Keyboard="Numeric"
+                    Text="{Binding CardInfo.Cvv}">
+                    <Entry.Behaviors>
+                        <fastEntry:XamarinFastEntryBehaviour Mask="###" MaxLength="3" />
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Button
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    BackgroundColor="Blue"
+                    Command="{Binding PayCommand}"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Pay"
+                    TextColor="White" />
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

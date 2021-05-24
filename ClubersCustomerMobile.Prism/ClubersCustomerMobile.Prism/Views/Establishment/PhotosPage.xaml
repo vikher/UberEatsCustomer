@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.PhotosPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="WhiteSmoke"
+    Visual="Material">
+    <AbsoluteLayout>
+        <StackLayout
+            Padding="10"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{StaticResource background_page}">
+            <CarouselView IndicatorView="indicatorView" ItemsSource="{Binding Photos}">
+                <CarouselView.EmptyView>
+                    <StackLayout>
+                        <Label
+                            Margin="10,25,10,10"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Center"
+                            Text="Este establecimeiento no tiene fotos." />
+                        <Label
+                            FontAttributes="Italic"
+                            FontSize="12"
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Center"
+                            Text="Tan pronto como las agregen apareceran aqui" />
+                    </StackLayout>
+                </CarouselView.EmptyView>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame
+                                BorderColor="DarkGray"
+                                CornerRadius="5"
+                                HasShadow="False"
+                                HeightRequest="400"
+                                HorizontalOptions="Center"
+                                VerticalOptions="CenterAndExpand">
+                                <StackLayout VerticalOptions="Center">
+                                    <ffimageloading:CachedImage
+                                        Aspect="AspectFill"
+                                        CacheDuration="50"
+                                        DownsampleToViewSize="true"
+                                        ErrorPlaceholder="https://clubersblob.blob.core.windows.net/icons/ErrorPlaceholder.png"
+                                        HeightRequest="200"
+                                        HorizontalOptions="Center"
+                                        LoadingPlaceholder="https://clubersblob.blob.core.windows.net/icons/ErrorPlaceholder.png"
+                                        RetryCount="3"
+                                        RetryDelay="600"
+                                        Source="{Binding ImageUrl}"
+                                        VerticalOptions="Center"
+                                        WidthRequest="200" />
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView
+                x:Name="indicatorView"
+                HorizontalOptions="Center"
+                IndicatorColor="LightGray"
+                IndicatorSize="10"
+                SelectedIndicatorColor="Black"
+                VerticalOptions="Center" />
+        </StackLayout>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+</ContentPage>

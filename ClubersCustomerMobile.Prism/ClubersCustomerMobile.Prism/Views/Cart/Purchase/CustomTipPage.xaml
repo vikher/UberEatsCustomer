@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.CustomTipPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <AbsoluteLayout>
+        <Grid
+            Padding="10"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{StaticResource background_page}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label
+                FontFamily="Lato-Bold"
+                FontSize="80"
+                HorizontalTextAlignment="Center"
+                Text="{Binding CustomTip, StringFormat='$ {0}'}"
+                TextColor="DeepPink"
+                VerticalOptions="Center" />
+            <Entry
+                Grid.Row="1"
+                Keyboard="Numeric"
+                Placeholder="Escribe la cantidad"
+                Text="{Binding CustomTip, Mode=TwoWay}" />
+            <Button
+                Grid.Row="2"
+                Command="{Binding NavigateToPurchaseDetailPageCommand}"
+                Text="Agregar propina" />
+        </Grid>
+
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+</ContentPage>

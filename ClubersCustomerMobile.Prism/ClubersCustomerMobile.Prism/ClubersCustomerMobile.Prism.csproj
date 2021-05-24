@@ -1,0 +1,249 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	<LangVersion>8.0</LangVersion>
+	<Nullable>enable</Nullable>
+	<NullableContextOptions>enable</NullableContextOptions>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Resources\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <None Remove="Resources\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ansuria.XFGloss" Version="1.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.0-preview.8.20414.8" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" Version="5.0.0-preview.8.20414.8" />
+    <PackageReference Include="Naxam.TopTabbedPage.Forms" Version="0.0.3.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
+    <PackageReference Include="Prism.Plugin.Popups" Version="7.2.0.1046" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
+    <PackageReference Include="Sharpnado.Presentation.Forms" Version="1.7.1" />
+    <PackageReference Include="SkiaRate.Forms" Version="0.5.2-pre" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+    <PackageReference Include="Twilio" Version="5.48.0" />
+    <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
+    <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
+    <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="Xam.TabView" Version="1.0.5" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1422" />
+    <PackageReference Include="Xamarin.Forms.InputKit" Version="3.3.1" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="4.8.0.1560" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.1.0.714" />
+    <PackageReference Include="Xamarin.Forms.RangeSlider" Version="1.0.2" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.8.0.1560" />
+    <PackageReference Include="XamarinFastEntry.Behaviors" Version="1.1.1" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\Cart\Evaluate\AnswersPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Purchase\CustomTipPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Delivery\DeliveryTrackingDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Delivery\DeliveryTrackingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Pin\PinConfigurationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Pin\PinRecoveryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Purchase\PaymentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\In Site\CommandPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\In Site\CompleteDataPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Chat\MessagesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\CreditBalance\CreditBalanceTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Establishment\EstablishmentInfoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Establishment\AmenitiesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Purchase\CartPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Establishment\OpinionsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Establishment\PhotosPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Pin\PinPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Purchase\PurchaseDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Evaluate\EvaluateDeliveryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Evaluate\EvaluateRestaurantPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Explore\FilterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Purchase\FinalizedPurchasePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Purchase\OrderAtHomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Purchase\PurchaseThankingMessagePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Registration\FreeTrialPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\Membership\MembershipPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\Help\HelpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\AccountHistory\OrderDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\AccountHistory\AccountHistoryTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\AccountHistory\MovementsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\Notifications\NotificationsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\Payments\AddNewPaymentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\Addresses\AddNewAddressPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\AvailableBalance\AvailableBalancePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\CreditBalance\CreditBalancePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Home\ProductsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Home\ProductDetailSectionPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\TermsAndConditions\TermsAndConditionsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\AccountHistory\RefundsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\ShareAndWin\ReferPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Registration\RecoverPasswordPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Registration\RegisterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\Addresses\CustomerAddressPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\ProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Menu\CustomerTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Explore\ExplorePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\AccountHistory\OrdersPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Home\EstablishmentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\Addresses\SavedAddressesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\Payments\SavedPaymentMethodsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Registration\VerifyPhonePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Registration\UpdatePasswordPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\CreditBalance\SharePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Purchase\ShoppingCartPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Purchase\SuccessOrderPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Purchase\UseBalancePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Share\ShareOptionsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Share\ShareWithPhotoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Cart\Evaluate\SurveyPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\CreditBalance\WithoutEvaluatingNorSharingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\CreditBalance\WithoutSharingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\In Site\WaiterTipPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Home\ProductsPage.xaml.cs">
+      <DependentUpon>ProductsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Profile\ProfilePage.xaml.cs">
+      <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

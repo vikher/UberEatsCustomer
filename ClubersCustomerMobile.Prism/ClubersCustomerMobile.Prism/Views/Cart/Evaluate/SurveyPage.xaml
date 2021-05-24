@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.SurveyPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    NavigationPage.HasNavigationBar="True"
+    Visual="Material">
+    <AbsoluteLayout Padding="5,0">
+        <StackLayout
+            Padding="5"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{StaticResource background_page}">
+            <CollectionView
+                x:Name="QuestionsList"
+                ItemsSource="{Binding Questions, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedQuestion, Mode=TwoWay}"
+                SelectionChangedCommand="{Binding AnswersPageCommand}"
+                SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label
+                            Margin="10,25,10,10"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Center"
+                            Text="No hay preguntas" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal">
+                            <Label
+                                Margin="0,10"
+                                FontAttributes="Bold"
+                                Text="{Binding Interrogation}" />
+                            <CheckBox
+                                Grid.Column="1"
+                                HorizontalOptions="End"
+                                IsChecked="{Binding Checked, Mode=TwoWay}"
+                                IsEnabled="False"
+                                Color="{StaticResource cluberspink}">
+                                <CheckBox.Behaviors>
+                                    <prism:EventToCommandBehavior
+                                        Command="{Binding Source={x:Reference QuestionsList}, Path=BindingContext.QuestionsCheckChangedCommand}"
+                                        CommandParameter="{Binding .}"
+                                        EventName="CheckedChanged" />
+                                </CheckBox.Behaviors>
+                            </CheckBox>
+
+                        </StackLayout>
+                        <!--  LineBreakMode="TailTruncation"  -->
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button
+                BackgroundColor="{StaticResource accent}"
+                Command="{Binding ShareOptionsCommand}"
+                IsEnabled="{Binding IsProceedEnabled}"
+                Text="Continuar" />
+        </StackLayout>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+</ContentPage>

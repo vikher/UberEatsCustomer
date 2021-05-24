@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.RegisterPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <AbsoluteLayout>
+        <StackLayout
+            Padding="15,0,15,10"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All">
+            <ScrollView>
+                <StackLayout>
+                    <Frame
+                        Margin="10,5,10,0"
+                        Padding="5"
+                        CornerRadius="10"
+                        HasShadow="False">
+                        <StackLayout>
+                            <Image
+                                Margin="0"
+                                HeightRequest="120"
+                                Source="https://clubersblob.blob.core.windows.net/welcomeevaluateandshare/RegistroReembolsos.png" />
+                            <Label
+                                Margin="10,0"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Center"
+                                Text="Más de $50,000 &#x0a; en reembolsos" />
+                        </StackLayout>
+                    </Frame>
+                    <Label
+                        Margin="10,0"
+                        FontAttributes="Bold"
+                        Text="Regístrate" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Frame
+                            Grid.Row="0"
+                            Margin="10,0,10,0"
+                            Padding="0"
+                            BackgroundColor="White"
+                            BorderColor="DarkGray"
+                            CornerRadius="30"
+                            HeightRequest="55"
+                            HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    Grid.Row="0"
+                                    Margin="20,0,0,0"
+                                    FontFamily="{StaticResource MaterialFontFamily}"
+                                    FontSize="Large"
+                                    HorizontalTextAlignment="End"
+                                    Text="{Binding EmailIcon}"
+                                    TextColor="{StaticResource secondary_text}"
+                                    VerticalTextAlignment="Center" />
+                                <Entry
+                                    Margin="0,0,20,0"
+                                    BackgroundColor="White"
+                                    FontAttributes="None"
+                                    FontSize="Small"
+                                    HorizontalOptions="FillAndExpand"
+                                    Placeholder="Email"
+                                    Text="{Binding User.Email}"
+                                    TextColor="{StaticResource secondary_text}" />
+                            </StackLayout>
+                        </Frame>
+                        <Frame
+                            x:Name="boxEmail"
+                            Grid.Row="1"
+                            Margin="10,0,10,0"
+                            Padding="0"
+                            BackgroundColor="White"
+                            BorderColor="DarkGray"
+                            CornerRadius="30"
+                            HeightRequest="55"
+                            HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    Margin="20,0,0,0"
+                                    FontFamily="{StaticResource MaterialFontFamily}"
+                                    FontSize="Large"
+                                    HorizontalTextAlignment="End"
+                                    Text="{Binding FullNameIcon}"
+                                    TextColor="{StaticResource secondary_text}"
+                                    VerticalTextAlignment="Center" />
+                                <Entry
+                                    Margin="0,0,20,0"
+                                    BackgroundColor="White"
+                                    FontAttributes="None"
+                                    FontSize="Small"
+                                    HorizontalOptions="FillAndExpand"
+                                    Keyboard="Numeric"
+                                    MaxLength="10"
+                                    Placeholder="Número de teléfono"
+                                    Text="{Binding User.Phone}"
+                                    TextColor="{StaticResource secondary_text}" />
+                            </StackLayout>
+                        </Frame>
+                        <Frame
+                            Grid.Row="2"
+                            Margin="10,0,10,0"
+                            Padding="0"
+                            BackgroundColor="White"
+                            BorderColor="DarkGray"
+                            CornerRadius="30"
+                            HeightRequest="55"
+                            HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    Margin="20,0,0,0"
+                                    FontFamily="{StaticResource MaterialFontFamily}"
+                                    FontSize="Large"
+                                    HorizontalTextAlignment="End"
+                                    Text="{Binding PasswordIcon}"
+                                    TextColor="{StaticResource secondary_text}"
+                                    VerticalTextAlignment="Center" />
+                                <Entry
+                                    Margin="0,0,20,0"
+                                    BackgroundColor="White"
+                                    FontAttributes="None"
+                                    FontSize="Small"
+                                    HorizontalOptions="FillAndExpand"
+                                    IsPassword="True"
+                                    Placeholder="Contraseña"
+                                    Text="{Binding User.Password}"
+                                    TextColor="{StaticResource secondary_text}" />
+                            </StackLayout>
+                        </Frame>
+                        <Frame
+                            Grid.Row="3"
+                            Margin="10,0,10,0"
+                            Padding="0"
+                            BackgroundColor="White"
+                            BorderColor="DarkGray"
+                            CornerRadius="30"
+                            HeightRequest="55"
+                            HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    Margin="20,0,0,0"
+                                    FontFamily="{StaticResource MaterialFontFamily}"
+                                    FontSize="Large"
+                                    HorizontalTextAlignment="End"
+                                    Text="{Binding PasswordIcon}"
+                                    TextColor="{StaticResource secondary_text}"
+                                    VerticalTextAlignment="Center" />
+                                <Entry
+                                    Margin="0,0,20,0"
+                                    BackgroundColor="White"
+                                    FontAttributes="None"
+                                    FontSize="Small"
+                                    HorizontalOptions="FillAndExpand"
+                                    IsPassword="True"
+                                    Placeholder="Confirma Contraseña"
+                                    Text="{Binding User.PasswordConfirm}"
+                                    TextColor="{StaticResource secondary_text}" />
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+            <Button
+                Margin="10"
+                Command="{Binding RegisterCommand}"
+                IsEnabled="{Binding IsEnabled}"
+                Text="Registrarme" />
+        </StackLayout>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center" />
+    </AbsoluteLayout>
+</ContentPage>

@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.ProductsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="WhiteSmoke"
+    NavigationPage.HasNavigationBar="True"
+    Visual="Material">
+    <AbsoluteLayout>
+        <StackLayout
+            Padding="10"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                              Light={StaticResource Background_Light}}">
+            <StackLayout>
+                <StackLayout HeightRequest="130">
+                    <RelativeLayout>
+                        <ffimageloading:CachedImage
+                            Aspect="AspectFill"
+                            CacheDuration="50"
+                            DownsampleToViewSize="true"
+                            ErrorPlaceholder="ErrorImage"
+                            HeightRequest="90"
+                            LoadingPlaceholder="LoaderImage"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Width,
+                                                                                  Factor=1}"
+                            RetryCount="3"
+                            RetryDelay="600"
+                            Source="{Binding Establishment.BannerUrl}"
+                            WidthRequest="60" />
+                        <ImageButton
+                            BackgroundColor="White"
+                            CornerRadius="80"
+                            HeightRequest="80"
+                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Property=Width,
+                                                                              Factor=.5,
+                                                                              Constant=-160}"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Property=Y,
+                                                                              Factor=0,
+                                                                              Constant=50}"
+                            Source="{Binding Establishment.LogoUrl}"
+                            WidthRequest="80" />
+
+                    </RelativeLayout>
+                </StackLayout>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="{Binding Establishment.Name}" />
+                <Label
+                    Margin="0,0,0,10"
+                    Text="{Binding Establishment.Id}"
+                    TextColor="{StaticResource secondary_text}" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Costo de envio: $30" />
+                    <Label HorizontalOptions="EndAndExpand" Text="Hoy: 1:30 a 10:00 pm" />
+                </StackLayout>
+                <Grid
+                    Padding="5"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                      Light={StaticResource Background_Light}}"
+                    ColumnDefinitions=" *, *, *"
+                    HorizontalOptions="Center"
+                    RowDefinitions="Auto ">
+                    <Frame
+                        Grid.Column="0"
+                        Padding="5"
+                        BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                          Light={StaticResource Background_Light}}"
+                        BorderColor="{StaticResource cluberspink}"
+                        CornerRadius="10"
+                        HasShadow="False">
+                        <Label
+                            Padding="0"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            Text="Informacion">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding InformationCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Frame>
+                    <Frame
+                        Grid.Column="1"
+                        Padding="5"
+                        BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                          Light={StaticResource Background_Light}}"
+                        BorderColor="{StaticResource cluberspink}"
+                        CornerRadius="10"
+                        HasShadow="False">
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            Text="Fotos">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PhotosCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Frame>
+                    <Frame
+                        Grid.Column="2"
+                        Padding="5"
+                        BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                          Light={StaticResource Background_Light}}"
+                        BorderColor="{StaticResource cluberspink}"
+                        CornerRadius="10"
+                        HasShadow="False">
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            Text="Amenidades">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AmenitiesCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Frame>
+                </Grid>
+            </StackLayout>
+            <CollectionView
+                IsGrouped="true"
+                ItemsSource="{Binding ProductsGrouped}"
+                SelectedItem="{Binding SelectedProduct}"
+                SelectionChangedCommand="{Binding SelectedProductCommand}"
+                SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label
+                            Margin="10,25,10,10"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Center"
+                            Text="No hay productos " />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            Text="{Binding Key}" />
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Margin="0"
+                            Padding="5"
+                            CornerRadius="10"
+                            HasShadow="False">
+                            <Grid Padding="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Padding="10,3,0,0"
+                                    FontAttributes="Bold"
+                                    FontSize="Subtitle"
+                                    LineBreakMode="TailTruncation"
+                                    Text="{Binding Name}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Padding="10,0"
+                                    FontAttributes="Italic"
+                                    Text="{Binding Description}"
+                                    TextColor="{StaticResource secondary_text}" />
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Padding="10,0"
+                                    FontAttributes="Bold"
+                                    Text="{Binding HomePrice, StringFormat='{}{0:C0}.00'}" />
+                                <ffimageloading:CachedImage
+                                    Grid.RowSpan="3"
+                                    Grid.Column="1"
+                                    Aspect="AspectFit"
+                                    CacheDuration="50"
+                                    ErrorPlaceholder="https://clubersblob.blob.core.windows.net/icons/ErrorPlaceholder.png"
+                                    HeightRequest="80"
+                                    HorizontalOptions="EndAndExpand"
+                                    LoadingPlaceholder="https://clubersblob.blob.core.windows.net/icons/ErrorPlaceholder.png"
+                                    RetryCount="3"
+                                    RetryDelay="600"
+                                    Source="{Binding ProductFile.Url}"
+                                    WidthRequest="80" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button
+                BackgroundColor="{StaticResource accent}"
+                Command="{Binding ViewCartCommand}"
+                Text="Ver Carrito" />
+        </StackLayout>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+</ContentPage>

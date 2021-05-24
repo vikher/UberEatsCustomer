@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.OrderAtHomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    NavigationPage.HasNavigationBar="False"
+    Visual="Material">
+    <AbsoluteLayout>
+        <Grid
+            Padding="10"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{StaticResource background_page}"
+            RowDefinitions="Auto, Auto, Auto, Auto">
+            <StackLayout Grid.Row="0" Spacing="0">
+                <Frame BorderColor="{StaticResource cluberspink}" HasShadow="False">
+                    <Grid ColumnDefinitions="Auto, *">
+                        <Label
+                            FontFamily="{StaticResource MaterialFontFamily}"
+                            FontSize="Large"
+                            HeightRequest="10"
+                            Text="{Binding LocationIcon}"
+                            VerticalTextAlignment="Center" />
+                        <StackLayout Grid.Column="1">
+                            <Label FontAttributes="Bold" Text="El repartidor ha llegado a tu domicilio" />
+                            <Label FontSize="Micro" Text="{Binding Delivery.EndDate, StringFormat='{0:dddd d MMMM, yyyy h:mm tt}'}" />
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+            </StackLayout>
+            <!--<StackLayout Grid.Row="1">
+                <Frame BorderColor="{StaticResource cluberspink}" HasShadow="False">
+                    <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+                        <CollectionView
+                            Grid.ColumnSpan="2"
+                            HeightRequest="50"
+                            ItemsSource="{Binding Products}"
+                            SelectionMode="Single">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.EmptyView>
+                                <StackLayout>
+                                    <Label
+                                        Margin="10,25,10,10"
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        HorizontalOptions="Fill"
+                                        HorizontalTextAlignment="Center"
+                                        Text="No hay Productos" />
+                                </StackLayout>
+                            </CollectionView.EmptyView>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout Orientation="Horizontal">
+                                        <CheckBox VerticalOptions="Center" />
+                                        <Label
+                                            LineBreakMode="TailTruncation"
+                                            MaxLines="2"
+                                            Style="{StaticResource primary_text}"
+                                            Text="{Binding Name}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            LineBreakMode="TailTruncation"
+                                            Style="{StaticResource primary_text}"
+                                            Text="{Binding Quantity, StringFormat='({0})'}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            HorizontalOptions="EndAndExpand"
+                                            LineBreakMode="TailTruncation"
+                                            MaxLines="2"
+                                            Style="{StaticResource primary_text}"
+                                            Text="{Binding Total, StringFormat='{}{0:C0}.00'}"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
+
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+            -->
+            <!--<StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                            <CheckBox VerticalOptions="Center" />
+                            <Label Text="Hamburguesa clasica (1)" VerticalOptions="Center" />
+                        </StackLayout>
+                        <Label
+                            Grid.Column="1"
+                            Text="$80.00"
+                            VerticalOptions="Center" />-->
+            <!--
+                        <Label Grid.Row="1" Text="Envio" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Text="{Binding ShoppingCartOrder.ProductsCount, StringFormat='{}{0:C0}.00'}" />
+                        <Label Grid.Row="2" Text="Propina" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Text="{Binding ShoppingCartOrder.Tip.Amount, StringFormat='{}{0:C0}.00'}" />
+                        <BoxView
+                            Grid.Row="3"
+                            Grid.ColumnSpan="2"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand"
+                            Color="{StaticResource cluberspink}" />
+                        <Label
+                            Grid.Row="4"
+                            FontAttributes="Bold"
+                            Text="Total a pagar" />
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            Text="{Binding ShoppingCartOrder.Total, StringFormat='{}{0:C0}.00'}" />
+                    </Grid>
+                </Frame>
+            </StackLayout>-->
+            <StackLayout Grid.Row="2">
+
+                <Frame BorderColor="{StaticResource cluberspink}" HasShadow="False">
+                    <Label Text="Antes de confirmar que tienes tu pedido, verifica que los sellos de garantia no estan violados y los paquetes esten completos." />
+                </Frame>
+            </StackLayout>
+
+            <Grid
+                Grid.Row="3"
+                Padding="0"
+                VerticalOptions="EndAndExpand">
+                <Button
+                    Command="{Binding PurchaseThankingMessageCommand}"
+                    FontAttributes="Bold"
+                    Text="Confirmar"
+                    VerticalOptions="EndAndExpand" />
+            </Grid>
+        </Grid>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+</ContentPage>

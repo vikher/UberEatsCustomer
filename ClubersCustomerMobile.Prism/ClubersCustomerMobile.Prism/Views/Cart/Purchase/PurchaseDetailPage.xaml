@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.PurchaseDetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="WhiteSmoke"
+    NavigationPage.HasNavigationBar="True"
+    Visual="Material">
+    <!--<ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="White" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>-->
+    <StackLayout
+        Padding="10"
+        BackgroundColor="{StaticResource background_page}"
+        Spacing="10">
+
+        <Frame
+            Padding="10,10,12,10"
+            BackgroundColor="White"
+            CornerRadius="10"
+            HasShadow="False">
+            <Grid ColumnDefinitions="Auto, *,Auto" RowDefinitions="Auto">
+                <Label
+                    FontFamily="{StaticResource MaterialFontFamily}"
+                    FontSize="Large"
+                    HeightRequest="10"
+                    Text="{Binding LocationIcon}"
+                    TextColor="{StaticResource secondary_text}"
+                    VerticalTextAlignment="Center" />
+                <Label
+                    Grid.Column="1"
+                    Padding="5,0"
+                    FontSize="Small"
+                    Text="{Binding Address.FullAddress}" />
+                <Label
+                    Grid.Column="2"
+                    FontAttributes="Bold"
+                    FontSize="Micro"
+                    HorizontalOptions="End"
+                    Text="cambiar"
+                    TextColor="{StaticResource secondary_text}"
+                    VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SavedAddressesCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Frame>
+        <CollectionView
+            HeightRequest="105"
+            ItemsSource="{Binding Products}"
+            SelectionMode="Single">
+            <CollectionView.Header>
+                <StackLayout>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="12"
+                        Text="Tu pedido" />
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="2" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.EmptyView>
+                <StackLayout>
+                    <Label
+                        Margin="10,25,10,10"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="Fill"
+                        HorizontalTextAlignment="Center"
+                        Text="No hay productos " />
+                </StackLayout>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="0"
+                        Padding="5"
+                        CornerRadius="10"
+                        HasShadow="False">
+                        <Grid Padding="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                Padding="10,3,0,0"
+                                FontAttributes="Bold"
+                                FontSize="Subtitle"
+                                LineBreakMode="TailTruncation"
+                                Text="{Binding Quantity}" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Padding="10,0"
+                                FontAttributes="Italic"
+                                Text="{Binding Name}"
+                                TextColor="{StaticResource secondary_text}" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Padding="10,0"
+                                FontAttributes="Bold"
+                                Text="{Binding Total, StringFormat='{}{0:C0}.00'}" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Frame Padding="10,5" CornerRadius="10">
+            <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="12"
+                        Text="Propina" />
+                    <Label
+                        Padding="0,0,0,0"
+                        FontSize="Small"
+                        HorizontalOptions="EndAndExpand"
+                        Text="{Binding SelectedTip.Amount, StringFormat='{0:C}'}"
+                        VerticalOptions="Center" />
+                </StackLayout>
+                <Grid ColumnDefinitions="Auto, Auto">
+                    <CollectionView
+                        HeightRequest="66"
+                        ItemsSource="{Binding Tips}"
+                        SelectedItem="{Binding SelectedTip, Mode=TwoWay}"
+                        SelectionMode="Single">
+                        <CollectionView.EmptyView>
+                            <StackLayout>
+                                <Label
+                                    Margin="10,25,10,10"
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Center"
+                                    Text="No hay Propinas" />
+                            </StackLayout>
+                        </CollectionView.EmptyView>
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout HorizontalItemSpacing="10" Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid
+                                    ColumnSpacing="10"
+                                    InputTransparent="True"
+                                    RowSpacing="10">
+                                    <Button
+                                        Margin="0,0,15,0"
+                                        Padding="0"
+                                        BackgroundColor="{StaticResource background_page}"
+                                        BorderWidth="0"
+                                        CornerRadius="10"
+                                        FontSize="Micro"
+                                        HeightRequest="30"
+                                        HorizontalOptions="FillAndExpand"
+                                        Text="{Binding Amount, StringFormat='{} {0:C0}'}"
+                                        TextColor="{StaticResource primary_text}"
+                                        VerticalOptions="CenterAndExpand"
+                                        WidthRequest="60" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Button
+                        Grid.Column="1"
+                        BackgroundColor="{StaticResource background_page}"
+                        Command="{Binding CustomTipCommand}"
+                        CornerRadius="10"
+                        FontSize="Micro"
+                        HeightRequest="30"
+                        HorizontalOptions="Center"
+                        Text="Otro"
+                        TextColor="{StaticResource primary_text}"
+                        VerticalOptions="Center"
+                        WidthRequest="60" />
+                </Grid>
+            </StackLayout>
+        </Frame>
+
+        <Frame Padding="10,5" CornerRadius="10">
+            <StackLayout>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="12"
+                    Text="Saldo Clubers" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Utilizar" VerticalOptions="Center" />
+                    <Entry
+                        FontSize="Small"
+                        HeightRequest="44"
+                        Keyboard="Numeric"
+                        Text="{Binding SelectedBalance}"
+                        WidthRequest="100" />
+                    <Label Text="MXN" VerticalOptions="Center" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label FontSize="11" Text="Cuentas con" />
+                    <Label
+                        FontSize="11"
+                        Text="{Binding RemainingBalance, StringFormat='{0:C2} mxn'}"
+                        TextColor="{StaticResource cluberspink}" />
+                    <Label FontSize="11" Text="en saldo Clubers disponible." />
+                </StackLayout>
+
+            </StackLayout>
+        </Frame>
+
+        <Frame
+            Padding="10,8,12,8"
+            BackgroundColor="White"
+            CornerRadius="10"
+            HasShadow="False">
+            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="12"
+                    Text="Método de pago"
+                    VerticalTextAlignment="Center" />
+                <Label
+                    Grid.Row="1"
+                    Padding="5,0"
+                    FontSize="Small"
+                    Text="Tarjeta **** 7585" />
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontSize="Micro"
+                    HorizontalOptions="End"
+                    Text="cambiar"
+                    TextColor="{StaticResource secondary_text}"
+                    VerticalTextAlignment="Center">
+                    <!--<Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SavedAddressesCommand}" />
+                    </Label.GestureRecognizers>-->
+                </Label>
+            </Grid>
+        </Frame>
+
+        <Button
+            Command="{Binding CheckoutCommand}"
+            FontAttributes="Bold"
+            Text="{Binding Total, StringFormat='{}Pagar {0:C}'}"
+            VerticalOptions="EndAndExpand" />
+    </StackLayout>
+</ContentPage>

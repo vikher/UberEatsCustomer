@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.OrderDetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <Grid Padding="10" BackgroundColor="{StaticResource background_page}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Frame Padding="1" BorderColor="Pink">
+                    <Grid Padding="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label
+                            FontAttributes="Bold"
+                            Text="{Binding Order.OrderStatus}"
+                            TextColor="Green" />
+                        <Label Grid.Column="1" Text="{Binding StartDate, StringFormat='{0:MMMM d, yyyy h:mm tt}'}" />
+                        <BoxView
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand"
+                            Color="Pink" />
+                        <Label
+                            Grid.Row="2"
+                            FontAttributes="Italic"
+                            LineBreakMode="WordWrap"
+                            Text="{Binding Order.Id, StringFormat='Pedido No {0}'}" />
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            FontAttributes="Italic"
+                            LineBreakMode="WordWrap"
+                            Text="{Binding Order.TypeOfOrder, StringFormat='Tipo de Pedido: {0}'}" />
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            FontAttributes="Italic"
+                            Text="{Binding Order.TotalPrice, StringFormat='Total {0:C}'}" />
+                    </Grid>
+                </Frame>
+                <Grid Grid.Row="1">
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        HorizontalTextAlignment="Start"
+                        Text="Total de Pago" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HorizontalTextAlignment="End"
+                        Text="{Binding Order.TotalPrice, StringFormat='{0:C0}.00'}"
+                        TextColor="{StaticResource accent}" />
+                </Grid>
+            </Grid>
+        </ScrollView>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="Pink" />
+    </AbsoluteLayout>
+</ContentPage>

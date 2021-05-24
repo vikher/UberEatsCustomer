@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.ShareOptionsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    NavigationPage.HasNavigationBar="True"
+    Visual="Material">
+
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout Padding="10" BackgroundColor="{StaticResource background_page}">
+
+                <Frame>
+                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto">
+                        <Image Grid.Column="1" Source="https://clubersblob.blob.core.windows.net/icons/Arrow.png" />
+                        <Label Text="Recibí 50% de reembolso de mi consumo en Hamburguesas El Jefe (FanPage) por pedir a Domicilio con #Clubers. Inscríbete Aquí (Landingpage)." />
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ShareWithPhotoCommand}" />
+
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+            </StackLayout>
+        </ScrollView>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+
+</ContentPage>

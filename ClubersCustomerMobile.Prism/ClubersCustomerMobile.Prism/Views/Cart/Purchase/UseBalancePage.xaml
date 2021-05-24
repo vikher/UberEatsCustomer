@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.UseBalancePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <AbsoluteLayout>
+        <StackLayout
+            Padding="10"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{StaticResource background_page}">
+            <Grid
+                ColumnDefinitions="*, *"
+                RowDefinitions="Auto, Auto, Auto"
+                RowSpacing="40">
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="Tu saldo Clubers disponible" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    FontSize="Large"
+                    HorizontalOptions="EndAndExpand"
+                    Text="{Binding AvailableBalance, StringFormat='{}{0:C2}'}" />
+
+                <Entry
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Keyboard="Numeric"
+                    Text="{Binding SelectedBalance}" />
+
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Text="En tu cuenta tienes" />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="{Binding RemainingBalance, StringFormat='{}{0:C2}'}" />
+
+            </Grid>
+            <Button
+                Command="{Binding CheckoutCommand}"
+                IsEnabled="{Binding IsEnabled}"
+                Text="Continuar"
+                VerticalOptions="EndAndExpand" />
+        </StackLayout>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+</ContentPage>

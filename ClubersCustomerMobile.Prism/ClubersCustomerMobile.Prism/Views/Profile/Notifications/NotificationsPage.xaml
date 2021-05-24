@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.NotificationsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <StackLayout Padding="10" BackgroundColor="{StaticResource background_page}">
+        <TableView Intent="Settings">
+            <TableRoot>
+                <TableSection>
+                    <SwitchCell
+                        xfg:SwitchCellGloss.ThumbOnTintColor="White"
+                        OnColor="Black"
+                        Text="Reembolsos pendientes por acreditar" />
+                    <SwitchCell
+                        xfg:SwitchCellGloss.ThumbOnTintColor="White"
+                        On="true"
+                        OnColor="Black"
+                        Text="Promociones" />
+                    <SwitchCell
+                        xfg:SwitchCellGloss.ThumbOnTintColor="White"
+                        On="true"
+                        OnColor="Black"
+                        Text="Restaurantes Nuevos" />
+                    <SwitchCell
+                        xfg:SwitchCellGloss.ThumbOnTintColor="White"
+                        On="true"
+                        OnColor="Black"
+                        Text="Comparte tu codigo y gana" />
+                    <SwitchCell
+                        xfg:SwitchCellGloss.ThumbOnTintColor="White"
+                        On="true"
+                        OnColor="Black"
+                        Text="Recomienda y gana" />
+                    <SwitchCell
+                        xfg:SwitchCellGloss.ThumbOnTintColor="White"
+                        On="true"
+                        OnColor="Black"
+                        Text="Carrito de compras pendiente de finalizar" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </StackLayout>
+</ContentPage>

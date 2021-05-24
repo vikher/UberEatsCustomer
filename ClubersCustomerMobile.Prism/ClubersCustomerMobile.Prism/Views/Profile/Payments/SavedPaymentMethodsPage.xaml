@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.SavedPaymentMethodsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding AddNewPaymentMethodCommand}"
+            IconImageSource="https://clubersblob.blob.core.windows.net/icons/addicon.png"
+            Order="Primary"
+            Priority="0" />
+    </ContentPage.ToolbarItems>-->
+    <AbsoluteLayout>
+        <StackLayout
+            Padding="20,10"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                              Light={StaticResource Background_Light}}">
+            <Frame
+                Margin="0"
+                BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                  Light={StaticResource Background_Light}}"
+                CornerRadius="25"
+                HasShadow="False"
+                HeightRequest="13">
+                <Label FontSize="Micro" Text="CoDi" />
+                <!--<Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SavedPaymentMethodsCommand}" />
+                </Frame.GestureRecognizers>-->
+            </Frame>
+            <Frame
+                Margin="0"
+                BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                  Light={StaticResource Background_Light}}"
+                CornerRadius="25"
+                HasShadow="False"
+                HeightRequest="13">
+                <Label FontSize="Micro" Text="Paypal" />
+                <!--<Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SavedPaymentMethodsCommand}" />
+                </Frame.GestureRecognizers>-->
+            </Frame>
+            <Frame
+                Margin="0"
+                BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                  Light={StaticResource Background_Light}}"
+                CornerRadius="25"
+                HasShadow="False"
+                HeightRequest="13">
+                <Label FontSize="Micro" Text="Efectivo" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SavedPaymentMethodsCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+            <Frame
+                Margin="0"
+                BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                  Light={StaticResource Background_Light}}"
+                CornerRadius="25"
+                HasShadow="False"
+                HeightRequest="13">
+                <Label FontSize="Micro" Text="Open Pay" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SavedPaymentMethodsCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+            <CollectionView
+                x:Name="paymentMethodsCollectionView"
+                HeightRequest="115"
+                ItemsSource="{Binding PaymentMethods}"
+                SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label
+                            Margin="10,25,10,10"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Center"
+                            Text="No hay Metodos de Pago" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                        BackgroundColor="Red"
+                                        Command="{Binding Source={x:Reference paymentMethodsCollectionView}, Path=BindingContext.FavoriteCommand}"
+                                        CommandParameter="{Binding}"
+                                        IconImageSource="https://clubersblob.blob.core.windows.net/icons/addicon.png"
+                                        Text="Borrar" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Frame
+                                Margin="0"
+                                Padding="10,0,10,5"
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                                  Light={StaticResource Background_Light}}"
+                                CornerRadius="27"
+                                HasShadow="False"
+                                HeightRequest="50"
+                                HorizontalOptions="StartAndExpand"
+                                IsClippedToBounds="True"
+                                VerticalOptions="StartAndExpand">
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        FontSize="Micro"
+                                        Text="{Binding PaymentType}" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="Micro"
+                                        Text="{Binding Expiration}" />
+                                </Grid>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Frame
+                Margin="0"
+                BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                  Light={StaticResource Background_Light}}"
+                CornerRadius="25"
+                HasShadow="False"
+                HeightRequest="13">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="https://clubersblob.blob.core.windows.net/icons/addicon.png" />
+                    <Label FontSize="Micro" Text="Agregar tarjeta" />
+                </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AddNewPaymentMethodCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+        </StackLayout>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center" />
+    </AbsoluteLayout>
+</ContentPage>

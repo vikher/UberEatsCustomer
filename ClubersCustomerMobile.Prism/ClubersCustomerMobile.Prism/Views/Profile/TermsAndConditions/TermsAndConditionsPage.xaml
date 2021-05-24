@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.Profile.TermsAndConditionsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <AbsoluteLayout>
+        <Grid
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                              Light={StaticResource Background_Light}}"
+            RowSpacing="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <!--  Header  -->
+            <StackLayout
+                Grid.Row="0"
+                Padding="30"
+                Spacing="0">
+                <StackLayout.Padding>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="10,40,10,0" />
+                        <On Platform="Android" Value="10,24,10,0" />
+                    </OnPlatform>
+                </StackLayout.Padding>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="30"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="{Binding Title}"
+                    VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+            <!--  Body  -->
+
+            <StackLayout Grid.Row="1" Spacing="15">
+                <Grid Padding="12">
+                    <yummy:PancakeView
+                        Padding="16,20,16,0"
+                        BackgroundColor="White"
+                        CornerRadius="20,20,0,0">
+                        <StackLayout>
+                            <ScrollView Margin="0,15,0,0">
+                                <Label
+                                    FontSize="Body"
+                                    Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only"
+                                    TextColor="{StaticResource secondary_text}" />
+                            </ScrollView>
+                        </StackLayout>
+                    </yummy:PancakeView>
+                </Grid>
+            </StackLayout>
+        </Grid>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center" />
+    </AbsoluteLayout>
+</ContentPage>

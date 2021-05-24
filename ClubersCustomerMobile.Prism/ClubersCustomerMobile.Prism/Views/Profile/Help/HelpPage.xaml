@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.HelpPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    x:Name="supportpage"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{StaticResource cluberspink}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <AbsoluteLayout>
+        <StackLayout
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                              Light={StaticResource Background_Light}}">
+            <CollectionView
+                Margin="11,0"
+                ItemsSource="{Binding Problems}"
+                SelectedItem="{Binding SelectedProblem}"
+                SelectionChangedCommand="{Binding SelectedProblemCommand}"
+                SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="15" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label
+                            Margin="10,25,10,10"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Center"
+                            Text="No hay problemas" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Frame
+                                Padding="15,10"
+                                CornerRadius="10"
+                                HasShadow="False">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="13"
+                                    Text="{Binding Description}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center" />
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button
+                Margin="10,0"
+                Command="{Binding Source={x:Reference supportpage}, Path=BindingContext.WhatsappCommand}"
+                IsEnabled="{Binding IsEnabled}"
+                Text="Continuar al chat"
+                VerticalOptions="EndAndExpand" />
+        </StackLayout>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+</ContentPage>

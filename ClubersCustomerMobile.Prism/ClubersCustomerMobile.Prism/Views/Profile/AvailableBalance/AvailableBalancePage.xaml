@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.Profile.AvailableBalance.AvailableBalancePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <ScrollView>
+        <AbsoluteLayout>
+            <StackLayout Padding="15,20" BackgroundColor="{StaticResource background_page}">
+                <Frame
+                    Margin="23,0,23,0"
+                    Padding="30,30"
+                    CornerRadius="20"
+                    HasShadow="False">
+                    <StackLayout>
+                        <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                            <Label
+                                Margin="0,0,0,0"
+                                Padding="0,0,0,0"
+                                FontAttributes="Bold"
+                                FontSize="25"
+                                HorizontalOptions="Center"
+                                Text="{Binding Amount, StringFormat='{0:C}'}"
+                                VerticalOptions="End" />
+                            <Label
+                                Margin="0,0,0,0"
+                                FontSize="Small"
+                                HorizontalOptions="Center"
+                                Text="MXN"
+                                VerticalOptions="End" />
+                        </StackLayout>
+                        <Label
+                            HorizontalOptions="Center"
+                            Text="Saldo disponible"
+                            TextColor="{StaticResource cluberspink}"
+                            VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                </Frame>
+                <Label
+                    Margin="0,10,0,10"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HorizontalOptions="Center"
+                    Text="Últimos movimientos" />
+                <CollectionView ItemsSource="{Binding AvailableBalances}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout HeightRequest="100">
+                                <Label
+                                    Margin="25,0"
+                                    FontAttributes="Bold"
+                                    FontSize="12"
+                                    Text="{Binding OrderDate, StringFormat='{0:d MMMM yyyy}'}" />
+                                <Frame
+                                    Padding="0,10"
+                                    CornerRadius="15"
+                                    HasShadow="False">
+                                    <Grid
+                                        Padding="25,5"
+                                        ColumnDefinitions="*,Auto"
+                                        RowDefinitions="Auto,Auto"
+                                        RowSpacing="0">
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            FontSize="12"
+                                            Text="{Binding RefundName}" />
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="1"
+                                            FlowDirection="RightToLeft"
+                                            FontSize="Small"
+                                            Text="{Binding Total, StringFormat='{0:C}'}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Grid.Row="1"
+                                            FontAttributes="Italic"
+                                            FontSize="Micro"
+                                            Text="{Binding ExpirationDate, StringFormat='vig. {0:d MMMM, yyyy}'}"
+                                            TextColor="{StaticResource secondary_text}" />
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ScrollView>
+</ContentPage>

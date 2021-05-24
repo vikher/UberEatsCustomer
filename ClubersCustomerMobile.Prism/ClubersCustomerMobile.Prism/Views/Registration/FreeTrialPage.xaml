@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.FreeTrialPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <AbsoluteLayout>
+        <StackLayout
+            Padding="20"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="#e6e6e6">
+            <StackLayout HeightRequest="150">
+                <RelativeLayout>
+                    <!--<magic:GradientView
+                        HeightRequest="180"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Property=Width,
+                                                                              Factor=1}"
+                        VerticalOptions="FillAndExpand">
+                        <magic:GradientView.GradientSource>
+                            <magic:LinearGradient Angle="90">
+                                <magic:GradientStop Offset="0" Color="DeepPink" />
+                                <magic:GradientStop Offset="1" Color="Purple" />
+                            </magic:LinearGradient>
+                        </magic:GradientView.GradientSource>
+                    </magic:GradientView>-->
+                    <Frame
+                            Margin="0"
+                            Padding="0"
+                            CornerRadius="12"
+                            HeightRequest="180"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Width,
+                                                                                  Factor=1}">
+                        <Frame.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Offset="0.1" Color="DeepPink" />
+                                <GradientStop Offset="1.0" Color="Purple" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+                    </Frame>
+                    <Label
+                        Text="{Binding GiftIconTrial}"
+                        Margin="0"
+                        Padding="0"
+                        FontFamily="{StaticResource MaterialFontFamily}"
+                        FontSize="50"
+                        HeightRequest="50"
+                        HorizontalOptions="CenterAndExpand"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Width,
+                                                                          Factor=.5,
+                                                                          Constant=-23}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Factor=0,
+                                                                          Property=Y,
+                                                                          Constant=10}"
+                        TextColor="White"
+                        VerticalTextAlignment="Center" />
+                    <Label
+                        Margin="0"
+                        Padding="0"
+                        HorizontalOptions="Center"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Width,
+                                                                          Factor=.5,
+                                                                          Constant=-77}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Factor=0,
+                                                                          Property=Y,
+                                                                          Constant=65}"
+                        Text="Si te referenció un amigo &#x0a;       ingresa tu código:"
+                        TextColor="White" />
+                    <Frame
+                        x:Name="boxCode"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="White"
+                        BorderColor="DarkGray"
+                        CornerRadius="20"
+                        HeightRequest="60"
+                        HorizontalOptions="Center"
+                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Width,
+                                                                          Factor=.5,
+                                                                          Constant=-140}"
+                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Factor=1,
+                                                                          Property=Y,
+                                                                          Constant=110}"
+                        WidthRequest="280">
+                        <StackLayout Orientation="Horizontal">
+                            <Entry
+                                Margin="0"
+                                BackgroundColor="White"
+                                Focused="Code_Focused"
+                                FontAttributes="None"
+                                FontSize="Medium"
+                                HeightRequest="70"
+                                HorizontalOptions="FillAndExpand"
+                                IsPassword="True"
+                                Placeholder="Ingresa tu código de referencia"
+                                PlaceholderColor="{StaticResource secondary_text}"
+                                Text="{Binding Code}"
+                                TextColor="{StaticResource accent}"
+                                Unfocused="boxCode_Unfocused" />
+                        </StackLayout>
+                    </Frame>
+                </RelativeLayout>
+            </StackLayout>
+            <Button
+                Margin="0,57,0,25"
+                Padding="12"
+                BackgroundColor="{StaticResource accent}"
+                Command="{Binding CompleteDataCommand}"
+                CornerRadius="30"
+                Text="Iniciar prueba gratis*"
+                TextColor="White" />
+
+            <StackLayout
+                Margin="0"
+                Padding="20,0"
+                Orientation="Horizontal">
+                <Label
+                    FontSize="Micro"
+                    HorizontalOptions="Start"
+                    Text="Anual: $1,000 MXN"
+                    TextColor="{StaticResource secondary_text}" />
+                <StackLayout
+                    Margin="0,0,0,20"
+                    HorizontalOptions="EndAndExpand"
+                    Orientation="Horizontal">
+                    <Label
+                        Margin="0"
+                        Padding="0"
+                        FontSize="Micro"
+                        HorizontalOptions="Start"
+                        Text="Promoción:"
+                        TextColor="{StaticResource secondary_text}" />
+                    <Label
+                        Margin="0"
+                        Padding="0"
+                        FontSize="Micro"
+                        HorizontalOptions="Start"
+                        Text="$250"
+                        TextColor="{StaticResource cluberspink}" />
+                    <Label
+                        Margin="0"
+                        Padding="0"
+                        FontSize="Micro"
+                        HorizontalOptions="Start"
+                        Text="MXN"
+                        TextColor="{StaticResource secondary_text}" />
+                </StackLayout>
+            </StackLayout>
+            <Label Text="*Disfruta de 1 Mes Gratis." TextColor="{StaticResource secondary_text}" />
+            <Label Text="Tu membresía será cobrada el 5 de mayo de 2020 con cargo automático en la tarjeta de crédito o débito que registres en tu primer consumo." TextColor="{StaticResource secondary_text}" />
+            <Grid
+                Margin="0,20,0,0"
+                ColumnDefinitions="Auto, Auto"
+                HorizontalOptions="Center">
+                <CheckBox
+                    Margin="0"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Color="{StaticResource cluberspink}" />
+                <StackLayout
+                    Grid.Column="1"
+                    HorizontalOptions="Start"
+                    Orientation="Horizontal">
+                    <Label
+                        HorizontalOptions="Start"
+                        Text="Acepto los"
+                        VerticalOptions="Center" />
+                    <Label
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        Text="Términos y condiciones "
+                        VerticalOptions="Center" />
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center" />
+    </AbsoluteLayout>
+</ContentPage>

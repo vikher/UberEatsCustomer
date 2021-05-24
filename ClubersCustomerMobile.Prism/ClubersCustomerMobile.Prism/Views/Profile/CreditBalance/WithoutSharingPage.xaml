@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.WithoutSharingPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:ClubersCustomerMobile.Prism.Converters"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <Page.Resources>
+        <local:OrderTypeValueConverter x:Key="OrderTypeValueConverter" />
+    </Page.Resources>
+    <Grid>
+        <StackLayout
+            Padding="10"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{StaticResource background_page}">
+            <CollectionView
+                ItemsSource="{Binding CreditBalance}"
+                SelectedItem="{Binding SelectedCb}"
+                SelectionChangedCommand="{Binding ShareOptionsCommand}"
+                SelectionMode="Single">
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label
+                            Margin="10,25,10,10"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Center"
+                            Text="No hay pendientes sin compartir" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label
+                                Padding="8,0"
+                                FontAttributes="Bold"
+                                Text="{Binding StartDate, StringFormat='{0:d MMMM}'}"
+                               />
+                            <Frame
+                                Margin="5"
+                                BackgroundColor="White"
+                                CornerRadius="20"
+                                HasShadow="False"
+                                HeightRequest="50"
+                                VerticalOptions="Center">
+                                <StackLayout VerticalOptions="Center">
+                                    <Grid
+                                        Grid.Row="2"
+                                        Padding="0"
+                                        ColumnDefinitions="*, Auto, Auto"
+                                        RowDefinitions="Auto,Auto"
+                                        RowSpacing="0"
+                                        VerticalOptions="Center">
+                                        <Image
+                                            Grid.RowSpan="2"
+                                            Margin="0"
+                                            Source="{Binding OrderType, Converter={StaticResource OrderTypeValueConverter}}"
+                                            VerticalOptions="Center" />
+                                        <StackLayout
+                                            Grid.RowSpan="2"
+                                            Grid.Column="1"
+                                            Orientation="Horizontal"
+                                            VerticalOptions="Center">
+                                            <Frame
+                                                Margin="0"
+                                                Padding="7,0"
+                                                BackgroundColor="Black"
+                                                CornerRadius="12"
+                                                VerticalOptions="Center"
+                                                WidthRequest="80">
+                                                <Label
+                                                    Padding="5,3,5,3"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{Binding OrderType}"
+                                                    TextColor="White"
+                                                    VerticalOptions="Center" />
+                                            </Frame>
+                                            <Label
+                                                Padding="12,3"
+                                                Text="{Binding OrderId, StringFormat='#{0}'}"
+                                                
+                                                VerticalOptions="Center" />
+                                        </StackLayout>
+                                        <Label
+                                            Grid.Column="2"
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="EndAndExpand"
+                                            Text="Total      "
+                                           
+                                            VerticalOptions="End" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="2"
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="EndAndExpand"
+                                            Text="{Binding Total, StringFormat='{0:C}'}"
+                                            TextColor="{StaticResource cluberspink}"
+                                            VerticalOptions="Start" />
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

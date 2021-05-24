@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.EvaluateDeliveryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:skiarate="clr-namespace:SkiaRate;assembly=SkiaRate.Forms"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    NavigationPage.HasNavigationBar="True"
+    Visual="Material">
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout Padding="20,10,20,10" BackgroundColor="{StaticResource background_page}">
+                <StackLayout>
+                    <Grid
+                        Margin="0,10,0,20"
+                        ColumnDefinitions="75, *"
+                        RowDefinitions="Auto, Auto, Auto">
+                        <ImageButton
+                            Grid.RowSpan="3"
+                            BackgroundColor="White"
+                            CornerRadius="70"
+                            HeightRequest="50"
+                            Source="{Binding DeliveryMen.ImageUrl}"
+                            WidthRequest="50" />
+                        <Label
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            FontSize="Small"
+                            Text="¿ Qué te pareció el servicio de"
+                            VerticalOptions="Center" />
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Orientation="Horizontal">
+
+                            <Label
+                                Margin="10,0,0,0"
+                                FontAttributes="Bold"
+                                FontSize="Small"
+                                Text="{Binding DeliveryMen.Name}" />
+                            <Label
+                                Margin="0,0,0,0"
+                                FontSize="Small"
+                                Text="?" />
+                        </StackLayout>
+                        <skiarate:RatingView
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            ColorOn="{StaticResource accent}"
+                            Count="5"
+                            HeightRequest="25"
+                            RatingType="Full"
+                            Value="{Binding DeliveryRating}" />
+                    </Grid>
+
+                    <!--<Editor
+                        Margin="0,5"
+                        AutoSize="TextChanges"
+                        BackgroundColor="White"
+                        Placeholder="Comentar"
+                        Text="{Binding Comments}" />
+
+                    <Image HeightRequest="210" Source="https://clubersblob.blob.core.windows.net/welcomeevaluateandshare/EvaluarRepartidor.png" />
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            Margin="0,8,0,0"
+                            FontSize="Small"
+                            Text="¿ Qué te pareció el servicio de" />
+                        <Label
+                            Margin="0,8,0,0"
+                            FontAttributes="Bold"
+                            FontSize="Small"
+                            Text="{Binding DeliveryMen.Name}" />
+                        <Label
+                            Margin="0,8,0,0"
+                            FontSize="Small"
+                            Text="?" />
+                    </StackLayout>
+                    <skiarate:RatingView
+                        Margin="0,10,0,10"
+                        ColorOn="{StaticResource cluberspink}"
+                        Count="5"
+                        HeightRequest="25"
+                        RatingType="Full"
+                        Value="{Binding DeliveryRating}" />-->
+
+                    <StackLayout HeightRequest="120">
+                        <CollectionView
+                            x:Name="QuestionsList"
+                            ItemsSource="{Binding Questions, Mode=TwoWay}"
+                            SelectedItem="{Binding SelectedQuestion, Mode=TwoWay}"
+                            SelectionChangedCommand="{Binding AnswersPageCommand}"
+                            SelectionMode="Single">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.EmptyView>
+                                <StackLayout>
+                                    <Label
+                                        Margin="10,25,10,10"
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        HorizontalOptions="Fill"
+                                        HorizontalTextAlignment="Center"
+                                        Text="No hay preguntas" />
+                                </StackLayout>
+                            </CollectionView.EmptyView>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                            Margin="0,10"
+                                            Text="{Binding Interrogation}"
+                                            VerticalOptions="Center" />
+                                        <CheckBox
+                                            Grid.Column="1"
+                                            HorizontalOptions="EndAndExpand"
+                                            IsChecked="{Binding Checked, Mode=TwoWay}"
+                                            IsEnabled="False"
+                                            VerticalOptions="Center"
+                                            Color="{StaticResource cluberspink}">
+                                            <CheckBox.Behaviors>
+                                                <prism:EventToCommandBehavior
+                                                    Command="{Binding Source={x:Reference QuestionsList}, Path=BindingContext.QuestionsCheckChangedCommand}"
+                                                    CommandParameter="{Binding .}"
+                                                    EventName="CheckedChanged" />
+                                            </CheckBox.Behaviors>
+                                        </CheckBox>
+
+                                    </StackLayout>
+                                    <!--  LineBreakMode="TailTruncation"  -->
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout
+                    Padding="0"
+                    Orientation="Vertical"
+                    VerticalOptions="EndAndExpand">
+                    <Button
+                        Command="{Binding EvaluateRestaurantCommand}"
+                        IsEnabled="{Binding IsProceedEnabled}"
+                        Text="Calificar" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+</ContentPage>

@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.VerifyPhonePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <StackLayout BackgroundColor="{StaticResource background_page}">
+        <Grid VerticalOptions="FillAndExpand">
+            <!--<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                <Frame
+                    Margin="0"
+                    Padding="0"
+                    BackgroundColor="{StaticResource accent}"
+                    HeightRequest="280" />
+            </StackLayout>-->
+            <StackLayout Margin="0,50,0,0">
+                <Frame
+                    Margin="10"
+                    Padding="0"
+                    BackgroundColor="White"
+                    CornerRadius="20"
+                    HasShadow="False"
+                    HeightRequest="170">
+                    <StackLayout>
+                        <StackLayout Margin="30,20,30,0" HorizontalOptions="CenterAndExpand">
+
+
+                            <Label
+                                FontSize="Small"
+                                HorizontalTextAlignment="Center"
+                                Text="Un código de verificación ha sido enviado a:"
+                                TextColor="{StaticResource secondary_text}" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Small"
+                                HorizontalTextAlignment="Start"
+                                Text="{Binding User.Phone}" />
+                            <Entry
+                                x:Name="MyOtp"
+                                Keyboard="Numeric"
+                                MaxLength="4"
+                                Placeholder="Enter the otp"
+                                Text="{Binding MyOtp}" />
+                        </StackLayout>
+                        <StackLayout Margin="0,20,0,0">
+                            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+
+                                <!--<Frame
+                                    x:Name="box1"
+                                    Margin="0"
+                                    Padding="0"
+                                    BackgroundColor="White"
+                                    BorderColor="DarkGray"
+                                    HeightRequest="50"
+                                    VerticalOptions="Fill"
+                                    WidthRequest="50">
+                                    <Entry
+                                        Focused="Entry_Focused"
+                                        FontSize="Medium"
+                                        HeightRequest="50"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Keyboard="Numeric"
+                                        MaxLength="1"
+                                        Text=""
+                                        Unfocused="box1_Unfocused"
+                                        WidthRequest="50" />
+                                </Frame>
+                                <Frame
+                                    x:Name="box2"
+                                    Margin="0"
+                                    Padding="0"
+                                    BackgroundColor="White"
+                                    BorderColor="DarkGray"
+                                    HeightRequest="50"
+                                    VerticalOptions="Fill"
+                                    WidthRequest="50">
+                                    <Entry
+                                        Focused="Entry_Focused_1"
+                                        FontSize="Medium"
+                                        HeightRequest="50"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Keyboard="Numeric"
+                                        MaxLength="1"
+                                        ReturnType="Next"
+                                        Text=""
+                                        Unfocused="box1_Unfocused"
+                                        WidthRequest="50" />
+                                </Frame>
+                                <Frame
+                                    x:Name="box3"
+                                    Margin="0"
+                                    Padding="0"
+                                    BackgroundColor="White"
+                                    BorderColor="DarkGray"
+                                    HeightRequest="50"
+                                    VerticalOptions="Fill"
+                                    WidthRequest="50">
+                                    <Entry
+                                        Focused="Entry_Focused_2"
+                                        FontSize="Medium"
+                                        HeightRequest="50"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Keyboard="Numeric"
+                                        MaxLength="1"
+                                        ReturnType="Next"
+                                        Text=""
+                                        Unfocused="box1_Unfocused"
+                                        WidthRequest="50" />
+                                </Frame>
+                                <Frame
+                                    x:Name="box4"
+                                    Margin="0"
+                                    Padding="0"
+                                    BackgroundColor="White"
+                                    BorderColor="DarkGray"
+                                    HeightRequest="50"
+                                    VerticalOptions="Fill"
+                                    WidthRequest="50">
+                                    <Entry
+                                        Focused="Entry_Focused_3"
+                                        FontSize="Medium"
+                                        HeightRequest="50"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Keyboard="Numeric"
+                                        MaxLength="1"
+                                        ReturnType="Next"
+                                        Text=""
+                                        Unfocused="box1_Unfocused"
+                                        WidthRequest="50" />
+                                </Frame>-->
+                            </StackLayout>
+
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <StackLayout Margin="40,7">
+                    <Button
+                        BackgroundColor="{StaticResource accent}"
+                        Command="{Binding FreeTrialCommand}"
+                        CornerRadius="20"
+                        Text="Siguiente"
+                        TextColor="White" />
+                    <StackLayout
+                        Margin="0,15,0,0"
+                        HorizontalOptions="CenterAndExpand"
+                        Orientation="Horizontal">
+
+                        <Label
+                            FontSize="12"
+                            HorizontalTextAlignment="Start"
+                            Text="¿No recibiste el código?"
+                            TextColor="{StaticResource secondary_text}" />
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="12"
+                            HorizontalTextAlignment="Start"
+                            Text="Reenviar"
+                            TextColor="{StaticResource cluberspink}}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ResendOtpCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </StackLayout>
+</ContentPage>

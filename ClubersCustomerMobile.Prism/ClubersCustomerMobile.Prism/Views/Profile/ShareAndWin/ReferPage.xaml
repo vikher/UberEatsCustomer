@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.ReferPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <AbsoluteLayout>
+        <Grid
+            Padding="10,13"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                              Light={StaticResource Background_Light}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackLayout HorizontalOptions="Center">
+                <Label LineBreakMode="WordWrap" LineHeight="1.3">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                FontSize="12"
+                                Text="Comparte tu código e invita a tus &#x0a;amigos a unirse a "
+                                TextColor="{StaticResource primary_text}" />
+                            <Span
+                                FontSize="12"
+                                Text="Clubers "
+                                TextColor="{StaticResource cluberspink}" />
+                            <Span
+                                FontSize="12"
+                                Text="y recibe $200 &#x0a;cuando realicen su primer consumo."
+                                TextColor="{StaticResource primary_text}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+            <!--<StackLayout Orientation="Horizontal">
+                <Label
+                    FontSize="Small"
+                    HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Center"
+                    Text="Comparte tu código e invita tus amigos a unirse a Clubers y recibe $200 cuando realicen su primer consumo." />
+            </StackLayout>-->
+            <Frame
+                Grid.Row="1"
+                Margin="23,10,23,8"
+                Padding="0"
+                CornerRadius="20">
+                <StackLayout>
+                    <Image HeightRequest="140" Source="https://clubersblob.blob.core.windows.net/welcomeevaluateandshare/RegistroReembolsos.png" />
+                    <Frame
+                        Padding="0,10,0,15"
+                        BackgroundColor="{StaticResource cluberspink}"
+                        CornerRadius="0">
+                        <StackLayout>
+                            <Label
+                                FontSize="12"
+                                HorizontalOptions="Center"
+                                Text="Tu código:"
+                                TextColor="White" />
+                            <Frame
+                                Margin="0"
+                                Padding="35,5"
+                                CornerRadius="10"
+                                HasShadow="False"
+                                HorizontalOptions="Center">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label
+                                        CharacterSpacing="2"
+                                        FontSize="14"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding ReferralCode}"
+                                        TextColor="{StaticResource cluberspink}" />
+                                    <Label
+                                        Margin="10,0,0,0"
+                                        FontFamily="{StaticResource MaterialFontFamily}"
+                                        FontSize="14"
+                                        HeightRequest="10"
+                                        HorizontalOptions="EndAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding ContentCopyIcon}"
+                                        TextColor="{StaticResource primary_text}"
+                                        VerticalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding CopyToClipboardCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout
+                Grid.Row="2"
+                Padding="0,10"
+                HorizontalOptions="Center"
+                Spacing="16">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="13"
+                    Text="Gracias a tí tus amigos recibirán: " />
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox
+                        Margin="-20,0,-15,0"
+                        HeightRequest="1"
+                        IsChecked="True"
+                        IsEnabled="False"
+                        Color="{StaticResource cluberspink}" />
+                    <Label LineBreakMode="WordWrap" LineHeight="1.3">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    FontSize="12"
+                                    Text="1 mes de membresía "
+                                    TextColor="{StaticResource primary_text}" />
+                                <Span
+                                    FontAttributes="Bold"
+                                    FontSize="12"
+                                    Text="Gratis."
+                                    TextColor="{StaticResource primary_text}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox
+                        Margin="-20,0,-15,0"
+                        HeightRequest="1"
+                        IsChecked="True"
+                        IsEnabled="False"
+                        Color="{StaticResource cluberspink}" />
+                    <Label LineBreakMode="WordWrap" LineHeight="1.3">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    FontAttributes="Bold"
+                                    FontSize="12"
+                                    Text="75% "
+                                    TextColor="{StaticResource primary_text}" />
+                                <Span
+                                    FontSize="12"
+                                    Text="de descuento en el costo de &#x0a;su membresía​."
+                                    TextColor="{StaticResource primary_text}" />
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox
+                        Margin="-20,0,-15,0"
+                        HeightRequest="1"
+                        IsChecked="True"
+                        IsEnabled="False"
+                        Color="{StaticResource cluberspink}" />
+                    <Label LineBreakMode="WordWrap" LineHeight="1.3">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    FontAttributes="Bold"
+                                    FontSize="12"
+                                    Text="100% "
+                                    TextColor="{StaticResource primary_text}" />
+                                <Span
+                                    FontSize="12"
+                                    Text="de reembolso en su &#x0a;primer consumo."
+                                    TextColor="{StaticResource primary_text}" />
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+            <!--<Button
+                Grid.Row="4"
+                Command="{Binding ShareCommand}"
+                IsEnabled="{Binding IsEnabled}"
+                Text="Compartir" />-->
+        </Grid>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center" />
+    </AbsoluteLayout>
+</ContentPage>

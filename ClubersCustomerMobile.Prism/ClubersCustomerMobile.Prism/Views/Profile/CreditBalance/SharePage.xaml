@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.SharePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    Visual="Material">
+    <AbsoluteLayout>
+        <Grid
+            Padding="10"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{StaticResource background_page}"
+            ColumnDefinitions="*"
+            RowDefinitions="Auto, *, Auto" />
+        <Grid Padding="10">
+            <Label
+                Grid.Row="0"
+                FontAttributes="Bold"
+                FontSize="18"
+                HorizontalOptions="Fill"
+                HorizontalTextAlignment="Center"
+                Text="{Binding ReferralText}" />
+            <Button
+                Grid.Row="2"
+                Command="{Binding ShareCommand}"
+                IsEnabled="{Binding IsEnabled}"
+                IsVisible="{Binding IsShareVisible}"
+                Text="Compartir" />
+            <Button
+                Grid.Row="2"
+                Command="{Binding ConfirmCommand}"
+                IsEnabled="{Binding IsEnabled}"
+                IsVisible="{Binding IsChargeVisible}"
+                Text="Cobrar" />
+        </Grid>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center" />
+    </AbsoluteLayout>
+</ContentPage>

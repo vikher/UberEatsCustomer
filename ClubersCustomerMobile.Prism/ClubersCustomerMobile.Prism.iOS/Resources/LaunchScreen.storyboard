@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="X5k-f2-b5h">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="gAE-YM-kbH">
+            <objects>
+                <viewController id="X5k-f2-b5h" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y8P-hJ-Z43"/>
+                        <viewControllerLayoutGuide type="bottom" id="9ZL-r4-8FZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yd7-JS-zBw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="2411" translatesAutoresizingMaskIntoConstraints="NO" image="clubers_splash_ios.png">
+                                <rect key="frame" x="68" y="270" width="240" height="273"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.92549019607843142" green="0" blue="0.5490196078431373" alpha="1"/>
+                        <constraints>
+                            <constraint id="2417" firstItem="2411" firstAttribute="top" secondItem="Y8P-hJ-Z43" secondAttribute="bottom" constant="250"/>
+                            <constraint id="2418" firstItem="9ZL-r4-8FZ" firstAttribute="top" secondItem="2411" secondAttribute="bottom" constant="269"/>
+                            <constraint id="2419" firstItem="2411" firstAttribute="leading" secondItem="yd7-JS-zBw" secondAttribute="leadingMargin" constant="52"/>
+                            <constraint id="2420" firstAttribute="trailingMargin" secondItem="2411" secondAttribute="trailing" constant="51"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XAI-xm-WK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="349" y="339"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="clubers_splash_ios.png" width="1200" height="357"/>
+    </resources>
+</document>

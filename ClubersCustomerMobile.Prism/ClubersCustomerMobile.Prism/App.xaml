@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication
+    x:Class="ClubersCustomerMobile.Prism.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms">
+    <Application.Resources>
+        <OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
+            <On Platform="iOS" Value="Material Design Icons" />
+            <On Platform="Android" Value="materialdesignicons-webfont.ttf#Material Design Icons" />
+        </OnPlatform>
+
+        <!--  Parameters  -->
+        <x:String x:Key="UrlAPI">http://clubers.qagperti.tk/</x:String>
+        <!--  Colors  -->
+        <Color x:Key="cluberspink">#EC008B</Color>
+
+        <Color x:Key="primary">#FF20B3</Color>
+        <Color x:Key="primary_dark">#7B1FA2</Color>
+        <Color x:Key="primary_light">#E1BEE7</Color>
+        <Color x:Key="accent">#EC008B</Color>
+        <Color x:Key="primary_text">#3C3C3B</Color>
+        <Color x:Key="primarydark_text">white</Color>
+
+        <Color x:Key="secondary_text">#B9B9B9</Color>
+        <Color x:Key="icons">#FFFFFF</Color>
+        <Color x:Key="divider">#BDBDBD</Color>
+        <Color x:Key="background_page">#F7F7F7</Color>
+        <Color x:Key="placeholder_value">#ecf0f1</Color>
+
+        <Color x:Key="GrayColor">#B9B9B9</Color>
+        <Color x:Key="WhiteColor">White</Color>
+        <Color x:Key="BlackColor">Black</Color>
+        <Color x:Key="PrimaryColor">#7E7D81</Color>
+
+        <Color x:Key="Background_Dark">Black</Color>
+        <Color x:Key="Background_Light">White</Color>
+        <!--  Styles  -->
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="White" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style TargetType="Frame">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="White" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <Style TargetType="StackLayout">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="White" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <Style TargetType="NavigationPage">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=Black, Light=White}" />
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="TextTransform" Value="None" />
+            <Setter Property="BackgroundColor" Value="{StaticResource cluberspink}" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+
+        <Style TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark=Black, Light=White}" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource primarydark_text}, Light={StaticResource primary_text}}" />
+
+        </Style>
+
+        <Style x:Key="ProfileIconStyle" TargetType="Label">
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="FontFamily" Value="{StaticResource MaterialFontFamily}" />
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource primarydark_text}, Light={StaticResource primary_text}}" />
+        </Style>
+
+    </Application.Resources>
+</prism:PrismApplication>

@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.MembershipPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <AbsoluteLayout>
+        <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark}, Light={StaticResource Background_Light}}" Spacing="15">
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="10,40,10,0" />
+                    <On Platform="Android" Value="10,15,10,0" />
+                </OnPlatform>
+            </StackLayout.Padding>
+            <Frame
+                Padding="15"
+                BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                  Light={StaticResource Background_Light}}"
+                CornerRadius="15">
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            HorizontalOptions="StartAndExpand"
+                            Text="{Binding Membership.Name}" />
+                        <StackLayout>
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                Text="{Binding Membership.Price, StringFormat='{0:C2} mxn'}" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Small"
+                                Text="{Binding Membership.ChargeType}"
+                                TextColor="{StaticResource secondary_text}" />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout
+                        Margin="0,30,0,0"
+                        Orientation="Horizontal"
+                        Spacing="15">
+                        <Button
+                            Command="{Binding NavigateToUpgradePlanCommand}"
+                            HorizontalOptions="FillAndExpand"
+                            Text="Mejorar Plan" />
+                        <Label
+                            Margin="0,0,0,15"
+                            FontAttributes="Bold"
+                            Text="Cancelar membresía"
+                            TextColor="{StaticResource accent}"
+                            VerticalOptions="EndAndExpand" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <Label
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Vigencia" />
+            <Frame BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark}, Light={StaticResource Background_Light}}" CornerRadius="15">
+                <StackLayout Padding="15">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Text="{Binding Membership.StartDate, StringFormat='Fecha Inicio: {0:MMMM d, yyyy h:mm tt}'}" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Text="{Binding Membership.EndDate, StringFormat='Fecha Fin: {0:MMMM d, yyyy h:mm tt}'}" />
+                </StackLayout>
+            </Frame>
+            <Label
+                FontAttributes="Bold"
+                FontSize="Medium"
+                Text="Beneficios" />
+            <Frame BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark}, Light={StaticResource Background_Light}}" CornerRadius="15">
+                <CollectionView ItemsSource="{Binding Membership.Description}">
+                    <CollectionView.EmptyView>
+                        <StackLayout>
+                            <Label
+                                Margin="10,25,10,10"
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                HorizontalOptions="Fill"
+                                HorizontalTextAlignment="Center"
+                                Text="No hay Beneficios" />
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Column="1"
+                                    FontAttributes="Bold"
+                                    Text="{Binding .}" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+        </StackLayout>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+</ContentPage>

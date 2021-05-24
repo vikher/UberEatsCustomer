@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.OnSitePinPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <AbsoluteLayout>
+        <Grid
+            Padding="10"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{StaticResource background_page}"
+            RowDefinitions="Auto, Auto, Auto, Auto">
+            <Frame
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Margin="20,20,20,0"
+                Padding="5,5"
+                CornerRadius="20"
+                HeightRequest="150">
+                <StackLayout>
+                    <Label
+                        Padding="0,20,0,0"
+                        FontSize="15"
+                        HorizontalTextAlignment="Center"
+                        Text="Ingresa tu NIP para verificar la compra"
+                        VerticalOptions="Center" />
+                    <Label
+                        Padding="20,0,20,0"
+                        FontFamily="Lato-Bold"
+                        FontSize="80"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding PincodeMasked}"
+                       
+                        VerticalOptions="Center" />
+                </StackLayout>
+            </Frame>
+            <Label
+                Grid.Row="2"
+                Padding="0,20,0,0"
+                FontFamily="Lato-Bold"
+                FontSize="Small"
+                HorizontalTextAlignment="Center"
+                Text="Recuperar PIN"
+                VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding PinRecoveryCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Grid
+                Grid.Row="3"
+                Padding="20"
+                ColumnDefinitions="*, *, *"
+                RowDefinitions="*, *, *, *">
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    BackgroundColor="White"
+                    Command="{Binding NumberCommand}"
+                    CommandParameter="1"
+                    FontSize="Title"
+                    Text="1"
+                    TextColor="{StaticResource primary_text}" />
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    BackgroundColor="White"
+                    Command="{Binding NumberCommand}"
+                    CommandParameter="2"
+                    FontSize="Title"
+                    Text="2"
+                    TextColor="{StaticResource primary_text}"/>
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    BackgroundColor="White"
+                    Command="{Binding NumberCommand}"
+                    CommandParameter="3"
+                    FontSize="Title"
+                    Text="3"
+                    TextColor="{StaticResource primary_text}" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    BackgroundColor="White"
+                    Command="{Binding NumberCommand}"
+                    CommandParameter="4"
+                    FontSize="Title"
+                    Text="4"
+                    TextColor="{StaticResource primary_text}" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    BackgroundColor="White"
+                    Command="{Binding NumberCommand}"
+                    CommandParameter="5"
+                    FontSize="Title"
+                    Text="5"
+                    TextColor="{StaticResource primary_text}" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    BackgroundColor="White"
+                    Command="{Binding NumberCommand}"
+                    CommandParameter="6"
+                    FontSize="Title"
+                    Text="6"
+                    TextColor="{StaticResource primary_text}" />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    BackgroundColor="White"
+                    Command="{Binding NumberCommand}"
+                    CommandParameter="7"
+                    FontSize="Title"
+                    Text="7"
+                    TextColor="{StaticResource primary_text}" />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    BackgroundColor="White"
+                    Command="{Binding NumberCommand}"
+                    CommandParameter="8"
+                    FontSize="Title"
+                    Text="8"
+                    TextColor="{StaticResource primary_text}" />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    BackgroundColor="White"
+                    Command="{Binding NumberCommand}"
+                    CommandParameter="9"
+                    FontSize="Title"
+                    Text="9"
+                    TextColor="{StaticResource primary_text}" />
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    BackgroundColor="White"
+                    Command="{Binding NumberCommand}"
+                    CommandParameter="0"
+                    FontSize="Title"
+                    Text="0"
+                    TextColor="{StaticResource primary_text}" />
+                <Button
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    BackgroundColor="WhiteSmoke"
+                    Command="{Binding EraseNumberCommand}"
+                    FontSize="Title"
+                    Text="x"
+                    TextColor="{StaticResource primary_text}" />
+                <Button
+                    Grid.Row="3"
+                    BackgroundColor="WhiteSmoke"
+                    FontSize="Title"
+                    Text=" "
+                    TextColor="{StaticResource primary_text}" />
+            </Grid>
+        </Grid>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="Pink" />
+    </AbsoluteLayout>
+</ContentPage>

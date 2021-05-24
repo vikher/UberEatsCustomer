@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.MovementsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+
+    <AbsoluteLayout>
+        <StackLayout
+            Padding="10"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                              Light={StaticResource Background_Light}}">
+            <Frame
+                Margin="5,7,5,5"
+                Padding="25"
+                BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                  Light={StaticResource Background_Light}}"
+                CornerRadius="20"
+                HasShadow="False">
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <Label
+                        FontSize="12"
+                        HorizontalOptions="Center"
+                        Text="Total"
+                        VerticalOptions="Center" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalOptions="Center"
+                        Text="{Binding Total, StringFormat='{0:C}'}"
+                        VerticalOptions="Center" />
+                    <Label
+                        HorizontalOptions="Center"
+                        Text="MXN"
+                        VerticalOptions="End" />
+                </StackLayout>
+            </Frame>
+            <CollectionView ItemsSource="{Binding Refunds}" SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label
+                            Margin="10,25,10,10"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Center"
+                            Text="No hay Reembolsos" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label
+                                Margin="0,5,0,0"
+                                Padding="8,0"
+                                FontSize="13"
+                                Text="{Binding OrderDate, StringFormat='{0:d MMMM yyyy}'}" />
+                            <Frame
+                                Margin="5,5,5,15"
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                                  Light={StaticResource Background_Light}}"
+                                CornerRadius="20"
+                                HasShadow="False"
+                                HeightRequest="30"
+                                VerticalOptions="Center">
+                                <StackLayout VerticalOptions="Center">
+                                    <Grid
+                                        Padding="0"
+                                        ColumnDefinitions="*, Auto, Auto"
+                                        RowDefinitions="Auto"
+                                        VerticalOptions="Center">
+                                        <Label
+                                            FontSize="Micro"
+                                            HorizontalTextAlignment="Start"
+                                            Text="{Binding RefundName}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            FontSize="12"
+                                            HorizontalOptions="Start"
+                                            Text="{Binding Amount, StringFormat='-{0:C}'}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            Grid.Column="2"
+                                            Margin="7,0,0,0"
+                                            FontAttributes="Bold"
+                                            FontSize="12"
+                                            HorizontalOptions="EndAndExpand"
+                                            Text="{Binding Amount, StringFormat='{0:C}'}"
+                                            VerticalOptions="Center" />
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center" />
+    </AbsoluteLayout>
+</ContentPage>

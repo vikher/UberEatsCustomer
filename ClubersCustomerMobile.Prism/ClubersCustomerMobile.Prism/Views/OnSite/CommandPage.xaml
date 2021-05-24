@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.CommandPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:ClubersCustomerMobile.Prism.Converters"
+    xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    NavigationPage.HasNavigationBar="True"
+    Visual="Material">
+    <Page.Resources>
+        <local:ToUpperValueConverter x:Key="ToUpperValueConverter" />
+    </Page.Resources>
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout
+                Padding="10"
+                BackgroundColor="{StaticResource background_page}"
+                Orientation="Vertical">
+                <StackLayout>
+                    <Frame Padding="10" BorderColor="{StaticResource cluberspink}">
+                        <Grid ColumnDefinitions="Auto,*" RowDefinitions="20, 20">
+                            <ImageButton
+                                Grid.RowSpan="3"
+                                BackgroundColor="White"
+                                CornerRadius="70"
+                                HeightRequest="70"
+                                Source="{Binding ShoppingCartOrder.Establishment.ImageUrl}"
+                                WidthRequest="70" />
+                            <Label
+                                Grid.Column="1"
+                                FontAttributes="Bold"
+                                Text="{Binding ShoppingCartOrder.Establishment.Name}" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="Volver a la tienda" />
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        Padding="10"
+                        BorderColor="{StaticResource cluberspink}"
+                        HasShadow="False">
+                        <Grid ColumnDefinitions="Auto, *">
+                            <Label
+                                Margin="10,0"
+                                FontFamily="{StaticResource MaterialFontFamily}"
+                                FontSize="Large"
+                                HeightRequest="10"
+                                Text="{Binding LocationIcon1}"
+                                TextColor="{StaticResource cluberspink}"
+                                VerticalTextAlignment="Center" />
+                            <Label Grid.Column="1" Text="{Binding ShoppingCartOrder.Establishment.Address}" />
+                        </Grid>
+                    </Frame>
+                    <StackLayout Margin="0,3" HeightRequest="100">
+                        <maps:Map x:Name="Mapa1" MapType="Street" />
+                    </StackLayout>
+                    <CollectionView
+                        HeightRequest="130"
+                        ItemsSource="{Binding Products}"
+                        SelectionMode="Single">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.EmptyView>
+                            <StackLayout>
+                                <Label
+                                    Margin="10,25,10,10"
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Center"
+                                    Text="No hay Productos" />
+                            </StackLayout>
+                        </CollectionView.EmptyView>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                    Padding="0"
+                                    BackgroundColor="{DynamicResource background_page}"
+                                    HasShadow="False">
+                                    <Frame
+                                        Padding="8"
+                                        BackgroundColor="White"
+                                        BorderColor="{StaticResource cluberspink}"
+                                        CornerRadius="8"
+                                        HasShadow="False"
+                                        Visual="Material">
+                                        <StackLayout Orientation="Horizontal" Spacing="16">
+                                            <Frame CornerRadius="6" Visual="Material">
+                                                <Image
+                                                    Aspect="AspectFill"
+                                                    HeightRequest="55"
+                                                    Source="{Binding ProductFile.Url}"
+                                                    WidthRequest="55" />
+                                            </Frame>
+                                            <StackLayout
+                                                HorizontalOptions="FillAndExpand"
+                                                Orientation="Horizontal"
+                                                Spacing="4"
+                                                VerticalOptions="Center">
+
+                                                <StackLayout Spacing="8">
+                                                    <Label
+                                                        LineBreakMode="TailTruncation"
+                                                        MaxLines="2"
+                                                        Style="{StaticResource primary_text}"
+                                                        Text="{Binding Name}" />
+                                                    <Label
+                                                        LineBreakMode="TailTruncation"
+                                                        MaxLines="2"
+                                                        Style="{StaticResource primary_text}"
+                                                        Text="{Binding OnSiteTotal, StringFormat='{}{0:C0}.00'}" />
+                                                </StackLayout>
+                                                <Label
+                                                    HorizontalOptions="EndAndExpand"
+                                                    LineBreakMode="TailTruncation"
+                                                    Style="{StaticResource primary_text}"
+                                                    Text="{Binding Quantity}"
+                                                    VerticalOptions="Center" />
+                                                <Stepper
+                                                    Increment="1"
+                                                    Maximum="10"
+                                                    Minimum="1"
+                                                    Value="{Binding Quantity}" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+                <StackLayout
+                    Margin="0,30,0,0"
+                    Padding="10"
+                    Orientation="Horizontal"
+                    Spacing="15"
+                    VerticalOptions="EndAndExpand">
+                    <Button
+                        BackgroundColor="White"
+                        Command="{Binding ClearBasketCommand}"
+                        CornerRadius="20"
+                        Text="Vaciar comanda"
+                        TextColor="{StaticResource primary_text}"
+                        VerticalOptions="FillAndExpand" />
+                    <Button
+                        Command="{Binding PaymentMethodsCommand}"
+                        HorizontalOptions="EndAndExpand"
+                        Text="Continuar" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="Pink" />
+    </AbsoluteLayout>
+</ContentPage>

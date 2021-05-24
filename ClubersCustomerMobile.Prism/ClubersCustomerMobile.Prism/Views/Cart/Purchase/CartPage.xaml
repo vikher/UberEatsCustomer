@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.CartPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
+    Title="{Binding Title}"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    IconImageSource="ic_action_shopping_cart"
+    NavigationPage.HasNavigationBar="False">
+    <StackLayout VerticalOptions="Center" />
+</ContentPage>

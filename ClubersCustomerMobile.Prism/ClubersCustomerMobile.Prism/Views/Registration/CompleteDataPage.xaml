@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.CompleteDataPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout Padding="10" BackgroundColor="White">
+                <StackLayout.Padding>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="10,40,10,40" />
+                        <On Platform="Android" Value="20,10,20,10" />
+                    </OnPlatform>
+                </StackLayout.Padding>
+                <StackLayout>
+                    <Grid ColumnDefinitions="*, *" RowDefinitions="Auto">
+                        <Grid
+                            Grid.ColumnSpan="2"
+                            Margin="0,0,0,10"
+                            ColumnDefinitions="80, *"
+                            RowDefinitions="Auto">
+                            <!--<ImageButton
+                                Margin="0,0,10,0"
+                                BackgroundColor="White"
+                                CornerRadius="20"
+                                HeightRequest="80"
+                                Source="https://clubersblob.blob.core.windows.net/users/profile.jpg"
+                                WidthRequest="80" />-->
+                            <ffimageloading:CachedImage
+                                Margin="0,0,10,0"
+                                Aspect="AspectFit"
+                                CacheDuration="50"
+                                DownsampleToViewSize="True"
+                                ErrorPlaceholder="https://clubersblob.blob.core.windows.net/icons/ErrorPlaceholder.png"
+                                HeightRequest="80"
+                                LoadingPlaceholder="https://clubersblob.blob.core.windows.net/icons/ErrorPlaceholder.png"
+                                RetryCount="3"
+                                RetryDelay="600"
+                                Source="{Binding Image}"
+                                WidthRequest="80">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:CircleTransformation />
+                                </ffimageloading:CachedImage.Transformations>
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ChangeImageCommand}" />
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                            <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Large"
+                                    HorizontalTextAlignment="Start"
+                                    Text="Perla Rojo" />
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame
+                                        Padding="0"
+                                        BackgroundColor="{StaticResource cluberspink}"
+                                        CornerRadius="8"
+                                        WidthRequest="80">
+                                        <Label
+                                            HorizontalTextAlignment="Center"
+                                            Text="Bronce"
+                                            TextColor="White" />
+                                    </Frame>
+                                    <Label Text="| No. socio: 123456" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                    </Grid>
+                    <!--<StackLayout HeightRequest="150">
+                        <RelativeLayout>
+                            <ffimageloading:CachedImage
+                                Aspect="AspectFill"
+                                CacheDuration="50"
+                                DownsampleToViewSize="true"
+                                ErrorPlaceholder="ErrorImage"
+                                HeightRequest="90"
+                                LoadingPlaceholder="LoaderImage"
+                                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                      Property=Width,
+                                                                                      Factor=1}"
+                                RetryCount="3"
+                                RetryDelay="600"
+                                Source="https://clubersblob.blob.core.windows.net/users/profile.jpg"
+                                WidthRequest="60" />
+                            <ImageButton
+                                BackgroundColor="White"
+                                CornerRadius="80"
+                                HeightRequest="80"
+                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Width,
+                                                                                  Factor=.5,
+                                                                                  Constant=-140}"
+                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Y,
+                                                                                  Factor=0,
+                                                                                  Constant=70}"
+                                Source="https://clubersblob.blob.core.windows.net/users/profile.jpg"
+                                WidthRequest="80" />
+                            <Label
+                                FontSize="Large"
+                                HorizontalTextAlignment="Center"
+                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Width,
+                                                                                  Factor=.5,
+                                                                                  Constant=-50}"
+                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Y,
+                                                                                  Factor=0,
+                                                                                  Constant=90}"
+                                Text="Bere monjaras" />
+                            <Label
+                                FontSize="Medium"
+                                HorizontalTextAlignment="Center"
+                                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Width,
+                                                                                  Factor=.5,
+                                                                                  Constant=-50}"
+                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Y,
+                                                                                  Factor=0,
+                                                                                  Constant=120}"
+                                Text="Bronce" />
+                        </RelativeLayout>
+                    </StackLayout>-->
+                    <StackLayout Spacing="15">
+                        <Label
+                            Margin="0,0,0,5"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="Datos" />
+                        <Frame Padding="0" CornerRadius="20">
+                            <Entry
+                                BackgroundColor="{StaticResource background_page}"
+                                FontAttributes="Italic"
+                                FontSize="Small"
+                                HeightRequest="55"
+                                Placeholder="Nombre"
+                                PlaceholderColor="{StaticResource secondary_text}"
+                                Text="{Binding User.FirstName}"
+                                VerticalTextAlignment="Center" />
+                        </Frame>
+                        <Frame Padding="0" CornerRadius="20">
+                            <DatePicker
+                                BackgroundColor="{StaticResource background_page}"
+                                FontAttributes="Italic"
+                                FontSize="Large"
+                                HeightRequest="55"
+                                TextColor="{StaticResource secondary_text}" />
+                        </Frame>
+
+                        <Frame Padding="0" CornerRadius="20">
+                            <Entry
+                                BackgroundColor="{StaticResource background_page}"
+                                FontAttributes="Italic"
+                                FontSize="Small"
+                                HeightRequest="55"
+                                Placeholder="Correo electrónico"
+                                PlaceholderColor="{StaticResource secondary_text}"
+                                Text="{Binding User.Email}"
+                                VerticalTextAlignment="Center" />
+                        </Frame>
+                        <Frame Padding="0" CornerRadius="20">
+                            <Entry
+                                BackgroundColor="{StaticResource background_page}"
+                                FontAttributes="Italic"
+                                FontSize="Small"
+                                HeightRequest="55"
+                                Placeholder="No. de INE"
+                                PlaceholderColor="{StaticResource secondary_text}"
+                                Text="{Binding User.Document}"
+                                VerticalTextAlignment="Center" />
+                        </Frame>
+                        <Label
+                            Margin="0,5,0,5"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="Tarjeta de crédito" />
+                        <Frame Padding="0" CornerRadius="20">
+                            <Entry
+                                BackgroundColor="{StaticResource background_page}"
+                                FontAttributes="Italic"
+                                FontSize="Small"
+                                HeightRequest="55"
+                                Placeholder="Tarjeta de crédito"
+                                PlaceholderColor="{StaticResource secondary_text}"
+                                VerticalTextAlignment="Center" />
+                        </Frame>
+                        <Label
+                            Margin="0,5,0,5"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="NIP de seguridad Clubers" />
+                        <Frame Padding="0" CornerRadius="20">
+                            <Entry
+                                BackgroundColor="{StaticResource background_page}"
+                                FontAttributes="Italic"
+                                FontSize="Small"
+                                HeightRequest="55"
+                                Placeholder="NIP"
+                                PlaceholderColor="{StaticResource secondary_text}"
+                                Text="{Binding User.NIP}"
+                                VerticalTextAlignment="Center" />
+                        </Frame>
+                        <Frame Padding="0" CornerRadius="20">
+                            <Entry
+                                BackgroundColor="{StaticResource background_page}"
+                                FontAttributes="Italic"
+                                FontSize="Small"
+                                HeightRequest="55"
+                                Placeholder="Confirmar NIP"
+                                PlaceholderColor="{StaticResource secondary_text}"
+                                Text="{Binding User.NIP}"
+                                VerticalTextAlignment="Center" />
+                        </Frame>
+                        <Label
+                            Margin="0,5,0,5"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="Pregunta de Seguridad" />
+                        <Frame Padding="0" CornerRadius="20">
+                            <Picker
+                                Title="Pregunta secreta"
+                                BackgroundColor="{StaticResource background_page}"
+                                FontAttributes="Italic"
+                                HeightRequest="55"
+                                ItemDisplayBinding="{Binding Question}"
+                                ItemsSource="{Binding SecretQuestions}"
+                                SelectedItem="{Binding SecretQuestion}"
+                                TitleColor="{StaticResource secondary_text}" />
+                        </Frame>
+                        <Frame Padding="0" CornerRadius="20">
+                            <Entry
+                                BackgroundColor="{StaticResource background_page}"
+                                FontAttributes="Italic"
+                                FontSize="Small"
+                                HeightRequest="55"
+                                Placeholder="Respuesta secreta"
+                                PlaceholderColor="{StaticResource secondary_text}"
+                                Text="{Binding User.SecretAnswer}"
+                                VerticalTextAlignment="Center" />
+                        </Frame>
+                        <!--<Label
+                            FontSize="Medium"
+                            HorizontalOptions="Center"
+                            Text="Dar de alta tarjeta de crédito o débito"
+                            TextDecorations="Underline" />-->
+
+                        <Grid
+                            Margin="0"
+                            Padding="0"
+                            ColumnDefinitions="Auto, *">
+                            <CheckBox
+                                Margin="0"
+                                VerticalOptions="Center"
+                                Color="{StaticResource cluberspink}" />
+                            <StackLayout
+                                Grid.Column="1"
+                                Margin="0"
+                                Padding="0"
+                                Orientation="Horizontal">
+                                <Label
+                                    Margin="0"
+                                    Padding="0"
+                                    Text="He leído el "
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Margin="0"
+                                    Padding="0"
+                                    FontAttributes="Bold"
+                                    Text="Aviso de privacidad"
+                                    TextDecorations="Underline"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </Grid>
+                        <Button Command="{Binding ContinueCommand}" Text="Guardar" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="Pink" />
+    </AbsoluteLayout>
+</ContentPage>

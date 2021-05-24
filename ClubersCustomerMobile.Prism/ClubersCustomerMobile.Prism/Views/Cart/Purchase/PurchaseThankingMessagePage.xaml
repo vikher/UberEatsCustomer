@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popups:PopupPage
+    x:Class="ClubersCustomerMobile.Prism.Views.PurchaseThankingMessagePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:popups="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:prism="http://prismlibrary.com"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    CloseWhenBackgroundIsClicked="False"
+    NavigationPage.HasNavigationBar="False"
+    Visual="Material">
+    <popups:PopupPage.Animation>
+        <animations:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </popups:PopupPage.Animation>
+    <StackLayout
+        Padding="40"
+        BackgroundColor="WhiteSmoke"
+        HorizontalOptions="Center"
+        VerticalOptions="Center">
+        <ffimageloading:CachedImage
+            Margin="5"
+            Aspect="AspectFit"
+            CacheDuration="50"
+            ErrorPlaceholder="https://clubersblob.blob.core.windows.net/icons/ErrorPlaceholder.png"
+            HeightRequest="90"
+            LoadingPlaceholder="https://clubersblob.blob.core.windows.net/icons/ErrorPlaceholder.png"
+            RetryCount="3"
+            RetryDelay="600"
+            Source="{Binding ImageUrl}"
+            WidthRequest="90" />
+        <Label
+            Padding="20"
+            FontSize="Large"
+            HorizontalTextAlignment="Center"
+            Text="¡Gracias por su compra!" />
+        <Frame
+            Margin="0"
+            Padding="0"
+            HeightRequest="99"
+            WidthRequest="99">
+
+            <Grid ColumnDefinitions="Auto, *" RowDefinitions="65, *">
+                <Image
+                    Grid.RowSpan="2"
+                    Grid.ColumnSpan="2"
+                    HeightRequest="222"
+                    HorizontalOptions="FillAndExpand"
+                    Source="https://clubersblob.blob.core.windows.net/welcomeevaluateandshare/FrameBackground.png"
+                    VerticalOptions="FillAndExpand"
+                    WidthRequest="222" />
+                <StackLayout Grid.ColumnSpan="2" Orientation="Horizontal">
+                    <Label
+                        Margin="10,20,0,0"
+                        FontFamily="{StaticResource MaterialFontFamily}"
+                        FontSize="Large"
+                        Text="{Binding GiftIcon}"
+                        TextColor="White"
+                        VerticalOptions="Start"
+                        VerticalTextAlignment="Start" />
+                    <Label
+                        Margin="5,2,0,0"
+                        FontSize="Medium"
+                        HorizontalTextAlignment="Start"
+                        Text="{Binding Refund.Price, StringFormat='{0:C0}&#x0a; Reembolso por &#x0a; acreditar'}"
+                        TextColor="White"
+                        VerticalTextAlignment="Center" />
+                </StackLayout>
+                <Label
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Margin="10,0"
+                    FontSize="Micro"
+                    HorizontalTextAlignment="Start"
+                    Text="Evalua y compate para acreditar tu reembolso"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding EvaluateDeliveryCommand}" />
+
+            </Frame.GestureRecognizers>
+        </Frame>
+        <Button Command="{Binding HomeCommand}" Text="Finalizar" />
+    </StackLayout>
+</popups:PopupPage>

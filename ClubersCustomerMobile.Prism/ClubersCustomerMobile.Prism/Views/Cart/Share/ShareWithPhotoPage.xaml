@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.ShareWithPhotoPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    NavigationPage.HasNavigationBar="True"
+    Visual="Material">
+
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout Padding="10" BackgroundColor="{StaticResource background_page}">
+
+                <StackLayout.Padding>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="10,40,10,40" />
+                        <On Platform="Android" Value="10,10,10,10" />
+                    </OnPlatform>
+                </StackLayout.Padding>
+                <StackLayout>
+
+                    <ffimageloading:CachedImage
+                        Aspect="AspectFit"
+                        CacheDuration="50"
+                        DownsampleToViewSize="true"
+                        ErrorPlaceholder="ErrorImage"
+                        LoadingPlaceholder="LoaderImage"
+                        RetryCount="3"
+                        RetryDelay="600"
+                        Source="{Binding ImageSource}">
+                        <ffimageloading:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeImageCommand}" />
+                        </ffimageloading:CachedImage.GestureRecognizers>
+                    </ffimageloading:CachedImage>
+
+                    <Frame
+                        Margin="0,10"
+                        Padding="25"
+                        CornerRadius="15">
+                        <StackLayout>
+                            <Label Text="Gané 50% de reembolso en mi primer consumo en Restaurante por pedir a domicilio con #clubers." />
+                            <Label Text="Regístrate aquí" />
+                        </StackLayout>
+                    </Frame>
+                    <Button
+                        BackgroundColor="White"
+                        BorderColor="HotPink"
+                        Command="{Binding ChangeImageCommand}"
+                        CornerRadius="50"
+                        FontSize="Small"
+                        HorizontalOptions="Center"
+                        Text="Agregar fotos"
+                        TextColor="{StaticResource primary_text}" />
+                </StackLayout>
+                <StackLayout
+                    Padding="0"
+                    Orientation="Vertical"
+                    VerticalOptions="EndAndExpand">
+                    <Button
+                        Command="{Binding ShareCommand}"
+                        ContentLayout="Left,5"
+                        Image="btnshareicon"
+                        Text="Compartir" />
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+
+</ContentPage>

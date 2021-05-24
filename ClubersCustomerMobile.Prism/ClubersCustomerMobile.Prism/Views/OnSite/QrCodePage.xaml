@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.QrCodePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:zxcm="clr-namespace:ZXing.Common;assembly=zxing.portable"
+    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    BackgroundColor="WhiteSmoke"
+    NavigationPage.HasNavigationBar="True"
+    Visual="Material">
+    <AbsoluteLayout Padding="5,0">
+        <StackLayout
+            Padding="10"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{StaticResource background_page}">
+            <Grid ColumnDefinitions="*, *" RowDefinitions="Auto">
+                <Grid
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,0,10"
+                    ColumnDefinitions="Auto, *"
+                    RowDefinitions="Auto, Auto">
+                    <ImageButton
+                        Margin="10,0"
+                        BackgroundColor="White"
+                        CornerRadius="80"
+                        HeightRequest="70"
+                        Source="https://clubersblob.blob.core.windows.net/users/profile.jpg"
+                        WidthRequest="70" />
+                    <StackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Large"
+                            HorizontalTextAlignment="Start"
+                            Text="Perla Rojo" />
+                        <StackLayout Orientation="Horizontal">
+                            <Frame
+                                Padding="0"
+                                BackgroundColor="{StaticResource cluberspink}"
+                                CornerRadius="8"
+                                WidthRequest="80">
+                                <Label
+                                    HorizontalTextAlignment="Center"
+                                    Text="Bronce"
+                                    TextColor="White" />
+                            </Frame>
+                            <Label Text="| No. socio: 123456" />
+                        </StackLayout>
+
+                    </StackLayout>
+                    <StackLayout
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand">
+                        <zxing:ZXingBarcodeImageView
+                            BarcodeFormat="QR_CODE"
+                            BarcodeValue="1337"
+                            HeightRequest="300"
+                            WidthRequest="300">
+                            <zxing:ZXingBarcodeImageView.BarcodeOptions>
+                                <zxcm:EncodingOptions Width="300" Height="300" />
+                            </zxing:ZXingBarcodeImageView.BarcodeOptions>
+                        </zxing:ZXingBarcodeImageView>
+                    </StackLayout>
+                </Grid>
+
+            </Grid>
+        </StackLayout>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center" />
+    </AbsoluteLayout>
+</ContentPage>

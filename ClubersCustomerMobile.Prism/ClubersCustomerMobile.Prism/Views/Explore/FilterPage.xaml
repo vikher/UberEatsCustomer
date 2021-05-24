@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.FilterPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:forms="clr-namespace:Xamarin.RangeSlider.Forms;assembly=Xamarin.RangeSlider.Forms"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="True"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    NavigationPage.HasNavigationBar="False"
+    Visual="Material">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalOptions="Start"
+                Text="{Binding Title}"
+                VerticalTextAlignment="Center" />
+            <Label
+                Margin="0,0,45,4"
+                FontSize="Micro"
+                HorizontalOptions="EndAndExpand"
+                Text="reestablecer"
+                TextDecorations="Underline"
+                VerticalTextAlignment="End" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <AbsoluteLayout>
+        <Grid
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{StaticResource background_page}"
+            RowSpacing="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0" Spacing="15">
+                <Grid Padding="12">
+                    <yummy:PancakeView
+                        Padding="16,20,16,0"
+                        BackgroundColor="{StaticResource background_page}"
+                        CornerRadius="20,20,0,0">
+                        <StackLayout>
+                            <Label
+                                Margin="0,0,0,5"
+                                FontAttributes="Bold"
+                                Text="Rango de precio" />
+                            <Grid
+                                Padding="0"
+                                ColumnDefinitions="*,*"
+                                RowDefinitions="Auto,Auto">
+                                <Frame
+                                    Grid.Column="0"
+                                    Margin="17,0,1,0"
+                                    Padding="10,5"
+                                    BackgroundColor="{StaticResource background_page}"
+                                    CornerRadius="12"
+                                    HasShadow="False">
+                                    <Label
+                                        BindingContext="{x:Reference Name=RangeSlider}"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding LowerValue, StringFormat='{0:F2}'}"
+                                        VerticalOptions="Center" />
+                                </Frame>
+                                <Frame
+                                    Grid.Column="1"
+                                    Margin="1,0,17,0"
+                                    Padding="10,5"
+                                    BackgroundColor="{StaticResource background_page}"
+                                    CornerRadius="12"
+                                    HasShadow="False">
+                                    <Label
+                                        BindingContext="{x:Reference Name=RangeSlider}"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding UpperValue, StringFormat='{0:F2}'}"
+                                        VerticalOptions="Center" />
+                                </Frame>
+                                <forms:RangeSlider
+                                    x:Name="RangeSlider"
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="2"
+                                    ActiveColor="{StaticResource cluberspink}"
+                                    LowerValue="1"
+                                    MaterialUI="True"
+                                    MaximumValue="100"
+                                    MinimumValue="1"
+                                    StepValue="1"
+                                    StepValueContinuously="True"
+                                    TextSize="15"
+                                    UpperValue="100"
+                                    VerticalOptions="Center" />
+                            </Grid>
+
+                            <Label
+                                Margin="0,10,0,0"
+                                FontAttributes="Bold"
+                                Text="Condición" />
+                            <StackLayout Margin="2,0,0,0" Orientation="Horizontal">
+                                <RadioButton
+                                    Command="{Binding ConditionCommand}"
+                                    CommandParameter="1"
+                                    GroupName="filters"
+                                    TextColor="{StaticResource primary_text}" />
+                                <Label Text="Reembolso de bienvenida" VerticalOptions="Center" />
+                            </StackLayout>
+                            <StackLayout Margin="2,0,0,0" Orientation="Horizontal">
+                                <RadioButton
+                                    Command="{Binding ConditionCommand}"
+                                    CommandParameter="2"
+                                    GroupName="filters"
+                                    TextColor="{StaticResource primary_text}" />
+                                <Label Text="Reembolso recurrente en sitio" VerticalOptions="Center" />
+                            </StackLayout>
+                            <Label
+                                Margin="0,10,0,0"
+                                FontAttributes="Bold"
+                                Text="Ordenar por" />
+                            <StackLayout Margin="2,0,0,0" Orientation="Horizontal">
+                                <RadioButton
+                                    Command="{Binding ConditionCommand}"
+                                    CommandParameter="3"
+                                    GroupName="filters"
+                                    TextColor="{StaticResource primary_text}" />
+                                <Label Text="Menor tiempo de entrega" VerticalOptions="Center" />
+
+                            </StackLayout>
+                            <StackLayout Margin="2,0,0,0" Orientation="Horizontal">
+                                <RadioButton
+                                    Command="{Binding ConditionCommand}"
+                                    CommandParameter="4"
+                                    GroupName="filters"
+                                    TextColor="{StaticResource primary_text}" />
+                                <Label Text="Menor costo a domicilio" VerticalOptions="Center" />
+                            </StackLayout>
+                            <StackLayout Margin="2,0,0,0" Orientation="Horizontal">
+                                <RadioButton
+                                    Command="{Binding ConditionCommand}"
+                                    CommandParameter="5"
+                                    GroupName="filters"
+                                    TextColor="{StaticResource primary_text}" />
+                                <Label Text="Mejor calificacion" VerticalOptions="Center" />
+                            </StackLayout>
+                            <Label
+                                Margin="0,10,0,0"
+                                FontAttributes="Bold"
+                                Text="Locación" />
+                            <StackLayout Margin="2,0,0,0" Orientation="Horizontal">
+                                <RadioButton
+                                    Command="{Binding ConditionCommand}"
+                                    CommandParameter="6"
+                                    GroupName="filters"
+                                    TextColor="{StaticResource primary_text}" />
+                                <Label Text="Restaurantes cercanos" VerticalOptions="Center" />
+                            </StackLayout>
+                            <StackLayout Margin="2,0,0,0" Orientation="Horizontal">
+                                <RadioButton
+                                    Command="{Binding ConditionCommand}"
+                                    CommandParameter="7"
+                                    GroupName="filters"
+                                    TextColor="{StaticResource primary_text}" />
+                                <Label Text="Restaurantes con servicio en sitio" VerticalOptions="Center" />
+                            </StackLayout>
+                        </StackLayout>
+                    </yummy:PancakeView>
+                </Grid>
+            </StackLayout>
+            <StackLayout
+                Grid.Row="1"
+                Padding="30"
+                Spacing="0">
+                <StackLayout.Padding>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="10,40,10,0" />
+                        <On Platform="Android" Value="10,24,10,0" />
+                    </OnPlatform>
+                </StackLayout.Padding>
+                <Button
+                    Margin="20,0"
+                    BackgroundColor="{StaticResource accent}"
+                    Command="{Binding ApplyFilterCommand}"
+                    CornerRadius="10"
+                    Text="Aplicar" />
+            </StackLayout>
+        </Grid>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+</ContentPage>

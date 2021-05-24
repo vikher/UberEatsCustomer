@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.ProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    IconImageSource="tabProfileIcon"
+    NavigationPage.HasNavigationBar="False">
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout
+                Grid.Row="2"
+                Padding="10,20"
+                BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                  Light={StaticResource Background_Light}}"
+                Orientation="Vertical"
+                VerticalOptions="Start">
+                <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto, Auto, Auto">
+                    <Grid
+                        Grid.ColumnSpan="2"
+                        Margin="0,0,0,10"
+                        ColumnDefinitions="80, *"
+                        RowDefinitions="Auto">
+                        <ffimageloading:CachedImage
+                            Margin="10,0"
+                            Aspect="AspectFit"
+                            CacheDuration="50"
+                            DownsampleToViewSize="True"
+                            ErrorPlaceholder="https://clubersblob.blob.core.windows.net/icons/ErrorPlaceholder.png"
+                            HeightRequest="80"
+                            LoadingPlaceholder="https://clubersblob.blob.core.windows.net/icons/ErrorPlaceholder.png"
+                            RetryCount="3"
+                            RetryDelay="600"
+                            Source="{Binding Image}"
+                            WidthRequest="80">
+                            <ffimageloading:CachedImage.Transformations>
+                                <fftransformations:CircleTransformation />
+                            </ffimageloading:CachedImage.Transformations>
+                            <ffimageloading:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ChangeImageCommand}" />
+                            </ffimageloading:CachedImage.GestureRecognizers>
+                        </ffimageloading:CachedImage>
+                        <StackLayout Grid.Column="1" VerticalOptions="Center">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Large"
+                                HorizontalTextAlignment="Start"
+                                Text="Perla Rojo" />
+                            <StackLayout Orientation="Horizontal">
+                                <Frame
+                                    Padding="0"
+                                    BackgroundColor="{StaticResource cluberspink}"
+                                    CornerRadius="8"
+                                    WidthRequest="80">
+                                    <Label
+                                        HorizontalTextAlignment="Center"
+                                        Text="Bronce"
+                                        TextColor="White" />
+                                </Frame>
+                                <Label Text="| No. socio: 123456" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+                    <Frame
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                          Light={StaticResource Background_Light}}"
+                        CornerRadius="10">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Style="{StaticResource ProfileIconStyle}" Text="{Binding AvailableBalanceIcon}" />
+                            <Label
+                                FontAttributes="Bold"
+                                Text="Saldo disponible"
+                                VerticalOptions="Start" />
+                            <Label
+                                FontAttributes="Bold"
+                                HorizontalOptions="EndAndExpand"
+                                Text="$500"
+                                TextColor="HotPink" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AvailableBalanceCommand}" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <Frame
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                          Light={StaticResource Background_Light}}"
+                        CornerRadius="10">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Style="{StaticResource ProfileIconStyle}" Text="{Binding CreditBalanceIcon}" />
+                            <Label
+                                FontAttributes="Bold"
+                                HorizontalOptions="Start"
+                                Text="Saldo por acreditar" />
+                            <Label
+                                FontAttributes="Bold"
+                                HorizontalOptions="EndAndExpand"
+                                Text="$200"
+                                TextColor="HotPink" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CreditBalanceCommand}" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                    <Frame
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Padding="0"
+                        BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                          Light={StaticResource Background_Light}}"
+                        CornerRadius="10"
+                        HeightRequest="40">
+                        <StackLayout
+                            Padding="0"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal"
+                            VerticalOptions="Center">
+                            <Label
+                                Style="{StaticResource ProfileIconStyle}"
+                                Text="{Binding HelpIcon}"
+                                VerticalOptions="Center" />
+                            <Label
+                                HorizontalOptions="Start"
+                                Text="Ayuda"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding HelpCommand}" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                    <Frame
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Padding="0"
+                        BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                          Light={StaticResource Background_Light}}"
+                        CornerRadius="10"
+                        HeightRequest="40">
+                        <StackLayout
+                            Padding="0"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal"
+                            VerticalOptions="Center">
+                            <Label
+                                Style="{StaticResource ProfileIconStyle}"
+                                Text="{Binding AccountHistoryIcon}"
+                                VerticalOptions="Center" />
+                            <Label
+                                HorizontalOptions="Start"
+                                Text="Historial"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AccountHistoryCommand}" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </Grid>
+
+                <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto">
+                    <RelativeLayout VerticalOptions="Center">
+                        <Frame
+                            Margin="0"
+                            Padding="0"
+                            CornerRadius="15"
+                            HeightRequest="75"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Width,
+                                                                                  Factor=1}"
+                            WidthRequest="100">
+                            <Frame.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Offset="0.1" Color="DeepPink" />
+                                    <GradientStop Offset="1.0" Color="Purple" />
+                                </LinearGradientBrush>
+                            </Frame.Background>
+                        </Frame>
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Small"
+                            HorizontalTextAlignment="Center"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Width,
+                                                                                  Factor=1}"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Property=Y,
+                                                                              Factor=0,
+                                                                              Constant=28}"
+                            Text="Clubers te regala $200 MXN"
+                            TextColor="White" />
+                    </RelativeLayout>
+                    <Label
+                        Grid.Column="1"
+                        Margin="0"
+                        Padding="0"
+                        FontFamily="{StaticResource MaterialFontFamily}"
+                        FontSize="Header"
+                        HorizontalOptions="Center"
+                        Text="{Binding QrCodeIcon}"
+                        VerticalTextAlignment="Center" />
+                </Grid>
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="Mi Cuenta"
+                    VerticalTextAlignment="Center" />
+
+                <StackLayout Margin="20,15">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Style="{StaticResource ProfileIconStyle}" Text="{Binding DeliveryAddressIcon}" />
+                        <Label HorizontalOptions="Start" Text="Direcciones de entrega" />
+                    </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SavedAddressesCommand}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <BoxView
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    Color="LightGray" />
+                <StackLayout Margin="20,15">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Style="{StaticResource ProfileIconStyle}" Text="{Binding PaymentMethodsIcon}" />
+                        <Label HorizontalOptions="Start" Text="Formas de pago" />
+                    </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SavedPaymentMethodsCommand}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <BoxView
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    Color="LightGray" />
+                <StackLayout Margin="20,15">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Style="{StaticResource ProfileIconStyle}" Text="{Binding NotificationsIcon}" />
+                        <Label HorizontalOptions="Start" Text="Notificaciones" />
+                    </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NotificationCommand}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <BoxView
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    Color="LightGray" />
+                <StackLayout Margin="20,15">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Style="{StaticResource ProfileIconStyle}" Text="{Binding TermsAndConditionsIcon}" />
+                        <Label HorizontalOptions="Start" Text="Términos y condiciones" />
+                    </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TermsAndConditionsCommand}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <BoxView
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    Color="LightGray" />
+                <StackLayout Margin="20,15">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Style="{StaticResource ProfileIconStyle}" Text="{Binding MembershipIcon}" />
+                        <Label HorizontalOptions="Start" Text="Membresía" />
+                    </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding MembershipCommand}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <BoxView
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    Color="LightGray" />
+                <StackLayout Margin="20,15">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Style="{StaticResource ProfileIconStyle}" Text="{Binding ReferIcon}" />
+                        <Label
+                            HorizontalOptions="Start"
+                            LineBreakMode="TailTruncation"
+                            Text="Comparte y gana" />
+                    </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ReferCommand}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <BoxView
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    Color="LightGray" />
+                <StackLayout Margin="20,15">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Style="{StaticResource ProfileIconStyle}" Text="{Binding LogoutIcon}" />
+                        <Label HorizontalOptions="Start" Text="Cerrar sesión" />
+                    </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="Pink" />
+    </AbsoluteLayout>
+</ContentPage>

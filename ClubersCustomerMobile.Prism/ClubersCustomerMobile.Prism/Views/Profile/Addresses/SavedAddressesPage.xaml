@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.SavedAddressesPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:ClubersCustomerMobile.Prism.Converters"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <Page.Resources>
+        <local:AddressTypeValueConverter x:Key="AddressTypeValueConverter" />
+    </Page.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding AddNewAddressCommand}"
+            IconImageSource="https://clubersblob.blob.core.windows.net/icons/addicon.png"
+            Order="Primary"
+            Priority="0" />
+    </ContentPage.ToolbarItems>
+    <AbsoluteLayout>
+        <StackLayout
+            Padding="10,15,10,10"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                              Light={StaticResource Background_Light}}">
+            <RefreshView
+                Command="{Binding RefreshViewCommand}"
+                IsRefreshing="{Binding IsRefreshing}"
+                RefreshColor="Red">
+                <CollectionView
+                    x:Name="SwipeCollectionView"
+                    ItemsSource="{Binding Addresses}"
+                    SelectedItem="{Binding SelectedAddress}"
+                    SelectionChangedCommand="{Binding SelectedAddressCommand}"
+                    SelectionMode="Single">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="13" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.EmptyView>
+                        <StackLayout>
+                            <Label
+                                Margin="10,25,10,10"
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                HorizontalOptions="Fill"
+                                HorizontalTextAlignment="Center"
+                                Text="Aún no tienes una dirección de entrega. Por favor, registra una dirección" />
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame
+                                Padding="10,5"
+                                CornerRadius="15"
+                                HasShadow="False"
+                                HorizontalOptions="StartAndExpand"
+                                IsClippedToBounds="True"
+                                VerticalOptions="StartAndExpand">
+                                <SwipeView BackgroundColor="White">
+                                    <SwipeView.RightItems>
+                                        <SwipeItems Mode="Reveal">
+                                            <SwipeItem
+                                                BackgroundColor="White"
+                                                Command="{Binding Source={x:Reference SwipeCollectionView}, Path=BindingContext.DeleteAddressCommand}"
+                                                CommandParameter="{Binding .}"
+                                                IconImageSource="https://clubersblob.blob.core.windows.net/icons/delete.png" />
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <Grid Padding="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+
+                                        </Grid.RowDefinitions>
+                                        <Label
+                                            Margin="0,0,5,0"
+                                            FontAttributes="Bold"
+                                            FontFamily="{StaticResource MaterialFontFamily}"
+                                            FontSize="Large"
+                                            Text="{Binding AddressType, Converter={StaticResource AddressTypeValueConverter}}"
+                                            VerticalOptions="Center"
+                                            VerticalTextAlignment="Center" />
+                                        <Label Grid.Column="1" Text="{Binding FullAddress}" />
+
+                                    </Grid>
+                                </SwipeView>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+            <!--<Button Command="{Binding GoBackCommand}" Text="Establecer dirección" />-->
+        </StackLayout>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+</ContentPage>

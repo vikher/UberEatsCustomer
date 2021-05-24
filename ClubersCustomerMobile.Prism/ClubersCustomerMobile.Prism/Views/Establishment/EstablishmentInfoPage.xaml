@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.EstablishmentInfoPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout
+                Padding="10"
+                BackgroundColor="{StaticResource background_page}"
+                Orientation="Vertical"
+                VerticalOptions="Start">
+                <Frame>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Style="{StaticResource ProfileIconStyle}" Text="{Binding AddressIcon}" />
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            Text="{Binding Establishment.Address}" />
+                    </StackLayout>
+                </Frame>
+                <Frame>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Style="{StaticResource ProfileIconStyle}" Text="{Binding BusinessHoursIcon}" />
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            Text="Cerrado   Abre el Martes a la(s) 7:00 a.m" />
+                    </StackLayout>
+
+                </Frame>
+                <Frame>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Style="{StaticResource ProfileIconStyle}" Text="{Binding PhoneIcon}" />
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            Text="{Binding Establishment.Phone}" />
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SavedAddressesCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Style="{StaticResource ProfileIconStyle}" Text="{Binding WebsiteIcon}" />
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            Text="{Binding Establishment.Website}" />
+                    </StackLayout>
+                </Frame>
+                <Frame>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Style="{StaticResource ProfileIconStyle}" Text="{Binding EmailIcon}" />
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            Text="{Binding Establishment.Email}" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+</ContentPage>

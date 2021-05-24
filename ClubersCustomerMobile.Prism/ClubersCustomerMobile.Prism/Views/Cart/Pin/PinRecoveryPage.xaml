@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.PinRecoveryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    Visual="Material">
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout
+                Padding="10"
+                BackgroundColor="{StaticResource background_page}"
+                Orientation="Vertical">
+                <StackLayout>
+                    <Label
+                        FontFamily="{StaticResource MaterialFontFamily}"
+                        FontSize="Header"
+                        HeightRequest="160"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding LockIcon}"
+                        TextColor="{StaticResource cluberspink}"
+                        VerticalTextAlignment="Center" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Title"
+                        HorizontalTextAlignment="Center"
+                        Text="¿Olvidaste tu PIN?" />
+                    <Label
+                        Margin="0,10"
+                        HorizontalTextAlignment="Center"
+                        Text="Selecciona la pregunta que elegiste al generar tu PIN y da respuesta. Recuerda que solo tienes 2 intentos." />
+                    <Picker Title="Pregunta secreta">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Nombre de mascota</x:String>
+                                <x:String>Libro favorito</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    <Entry Placeholder="Respuesta secreta" />
+                </StackLayout>
+                <StackLayout
+                    Padding="0"
+                    Orientation="Vertical"
+                    VerticalOptions="EndAndExpand">
+                    <Button Command="{Binding PinConfigurationCommand}" Text="Confirmar" />
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+</ContentPage>

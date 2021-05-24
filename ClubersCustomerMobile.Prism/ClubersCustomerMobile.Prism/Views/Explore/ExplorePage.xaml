@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.ExplorePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:skiarate="clr-namespace:SkiaRate;assembly=SkiaRate.Forms"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    IconImageSource="tabExploreIcon"
+    NavigationPage.HasNavigationBar="False">
+    <AbsoluteLayout>
+        <StackLayout
+            Padding="10"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                              Light={StaticResource Background_Light}}">
+            <Grid
+                Margin="0"
+                Padding="5,0"
+                ColumnDefinitions="20*, 80*"
+                HeightRequest="102">
+                <Button
+                    Grid.Column="0"
+                    BackgroundColor="White"
+                    Command="{Binding FilterCommand}"
+                    CornerRadius="10"
+                    FontFamily="{StaticResource MaterialFontFamily}"
+                    Text="{Binding FilterIcon}"
+                    TextColor="{StaticResource primary_text}" />
+                <SearchBar
+                    Grid.Column="1"
+                    Margin="5"
+                    CancelButtonColor="{StaticResource accent}"
+                    Placeholder="Buscar Restaurante"
+                    PlaceholderColor="{StaticResource secondary_text}"
+                    SearchCommand="{Binding SearchCommand}"
+                    Text="{Binding Search}"
+                    TextColor="{StaticResource accent}"
+                    WidthRequest="50" />
+            </Grid>
+            <Grid
+                Margin="0"
+                Padding="5,0"
+                ColumnDefinitions="*,*"
+                RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+                <Frame
+                    Grid.ColumnSpan="2"
+                    Margin="0"
+                    Padding="10,5"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                      Light={StaticResource Background_Light}}"
+                    HasShadow="False">
+                    <StackLayout>
+                        <Grid Grid.ColumnSpan="2" ColumnDefinitions="Auto, Auto, Auto, *">
+                            <Image HeightRequest="25" Source="https://clubersblob.blob.core.windows.net/users/profile.jpg" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="10,0,0,0"
+                                Text="{Binding User.Result.FullName, StringFormat='Hola {0},'}"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Text="Tienes $500"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                Grid.Column="3"
+                                Margin="0"
+                                FontFamily="{StaticResource MaterialFontFamily}"
+                                FontSize="Large"
+                                HeightRequest="10"
+                                HorizontalOptions="EndAndExpand"
+                                Text="{Binding ShoppingCartIcon}"
+                                TextColor="{StaticResource secondary_text}"
+                                VerticalTextAlignment="Center" />
+                        </Grid>
+                        <Grid
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            ColumnDefinitions="Auto, *">
+                            <Label
+                                Margin="0"
+                                FontFamily="{StaticResource MaterialFontFamily}"
+                                FontSize="Large"
+                                HeightRequest="10"
+                                Text="{Binding LocationIcon1}"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                Grid.Column="1"
+                                Margin="13,0,0,0"
+                                LineBreakMode="WordWrap"
+                                MaxLines="2"
+                                Text="{Binding MyAddress.GeoAddress, StringFormat='Enviar a {0}'}"
+                                TextTransform="None" />
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+
+                <Button
+                    x:Name="sitio"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    BackgroundColor="Black"
+                    Clicked="OnClik"
+                    Command="{Binding FilterOnSiteCommand}"
+                    CornerRadius="10"
+                    FontSize="Micro"
+                    HeightRequest="30"
+                    ImageSource="https://clubersblob.blob.core.windows.net/icons/SitioHomeNegativo.png"
+                    Text="En Sitio"
+                    TextColor="White" />
+                <Button
+                    x:Name="domicilio"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    BackgroundColor="White"
+                    Clicked="OnClic"
+                    Command="{Binding FilterHomeDeliveryCommand}"
+                    CornerRadius="10"
+                    FontSize="Micro"
+                    HeightRequest="30"
+                    ImageSource="https://clubersblob.blob.core.windows.net/icons/DomicilioHome.png"
+                    Text="A domicilio"
+                    TextColor="{StaticResource primary_text}" />
+                <StackLayout
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    HeightRequest="50">
+                    <RelativeLayout>
+                        <Frame
+                            Margin="0"
+                            Padding="0"
+                            CornerRadius="12"
+                            HeightRequest="50"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Width,
+                                                                                  Factor=1}">
+                            <Frame.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <GradientStop Offset="0.1" Color="DeepPink" />
+                                    <GradientStop Offset="1.0" Color="Purple" />
+                                </LinearGradientBrush>
+                            </Frame.Background>
+                        </Frame>
+                        <Label
+                            HorizontalOptions="Center"
+                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Property=Width,
+                                                                              Factor=.5,
+                                                                              Constant=-55}"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Factor=0,
+                                                                              Property=Y,
+                                                                              Constant=7}"
+                            Text="     Aprovecha tu &#x0a;reembolso Clubers"
+                            TextColor="White" />
+                    </RelativeLayout>
+                </StackLayout>
+                <CollectionView
+                    x:Name="categoryList"
+                    Grid.Row="4"
+                    Grid.ColumnSpan="2"
+                    HeightRequest="80"
+                    ItemsSource="{Binding Categories}"
+                    SelectedItem="{Binding SelectedCategory}"
+                    SelectionChangedCommand="{Binding CategorySelectedCommand}"
+                    SelectionMode="Single"
+                    VerticalOptions="Start">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame
+                                Margin="10"
+                                Padding="0"
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                                  Light={StaticResource Background_Light}}"
+                                CornerRadius="10"
+                                HasShadow="False">
+                                <Grid RowDefinitions="*, Auto">
+                                    <ffimageloading:CachedImage
+                                        Grid.Row="0"
+                                        Aspect="AspectFit"
+                                        CacheDuration="50"
+                                        ErrorPlaceholder="https://clubersblob.blob.core.windows.net/icons/ErrorPlaceholder.png"
+                                        HeightRequest="30"
+                                        LoadingPlaceholder="https://clubersblob.blob.core.windows.net/icons/ErrorPlaceholder.png"
+                                        RetryCount="3"
+                                        RetryDelay="600"
+                                        Source="{Binding ImageUrl}"
+                                        WidthRequest="30" />
+                                    <Label
+                                        Grid.Row="1"
+                                        FontSize="Micro"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="{Binding Name}"
+                                        VerticalOptions="CenterAndExpand" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <CollectionView
+                    x:Name="subcategoryList"
+                    Grid.Row="5"
+                    Grid.ColumnSpan="2"
+                    HeightRequest="77"
+                    ItemsSource="{Binding SubCategories}"
+                    SelectedItem="{Binding SelectedSubcategory}"
+                    SelectionChangedCommand="{Binding SubcategorySelectedCommand}"
+                    SelectionMode="Single">
+                    <CollectionView.EmptyView>
+                        <StackLayout>
+                            <Label
+                                Margin="10,25,10,10"
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                HorizontalOptions="Fill"
+                                HorizontalTextAlignment="Center"
+                                Text="No hay Subcategorias" />
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label
+                                    FontSize="16"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Text="{Binding Name}"
+                                    VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+            <RefreshView
+                Command="{Binding RefreshViewCommand}"
+                IsRefreshing="{Binding IsRefreshing}"
+                RefreshColor="Red">
+                <StackLayout>
+                    <CollectionView
+                        BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                          Light={StaticResource Background_Light}}"
+                        ItemsSource="{Binding Establishments}"
+                        SelectedItem="{Binding SelectedEstablishment}"
+                        SelectionChangedCommand="{Binding EstablishmentSelectedCommand}"
+                        SelectionMode="Single">
+                        <CollectionView.EmptyView>
+                            <StackLayout>
+                                <Label
+                                    Margin="10,25,10,10"
+                                    FontAttributes="Bold"
+                                    FontSize="18"
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Center"
+                                    Text="No hay Restaurantes" />
+                            </StackLayout>
+                        </CollectionView.EmptyView>
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                    Padding="0"
+                                    BackgroundColor="{AppThemeBinding Dark={StaticResource Background_Dark},
+                                                                      Light={StaticResource Background_Light}}"
+                                    HasShadow="False">
+                                    <Frame
+                                        Margin="10"
+                                        Padding="0"
+                                        CornerRadius="10"
+                                        HasShadow="False">
+                                        <StackLayout Orientation="Vertical" Spacing="16">
+                                            <StackLayout Margin="0" Padding="0">
+                                                <ffimageloading:CachedImage
+                                                    Grid.RowSpan="3"
+                                                    Aspect="AspectFill"
+                                                    CacheDuration="50"
+                                                    ErrorPlaceholder="https://clubersblob.blob.core.windows.net/icons/ErrorPlaceholder.png"
+                                                    HeightRequest="130"
+                                                    LoadingPlaceholder="https://clubersblob.blob.core.windows.net/icons/ErrorPlaceholder.png"
+                                                    RetryCount="3"
+                                                    RetryDelay="600"
+                                                    Source="{Binding BannerUrl}"
+                                                    WidthRequest="100" />
+                                            </StackLayout>
+                                            <StackLayout
+                                                Padding="10,5"
+                                                HorizontalOptions="FillAndExpand"
+                                                Orientation="Vertical"
+                                                Spacing="4"
+                                                VerticalOptions="FillAndExpand">
+                                                <StackLayout Orientation="Horizontal" Spacing="55">
+                                                    <Label
+                                                        LineBreakMode="TailTruncation"
+                                                        MaxLines="2"
+                                                        Text="{Binding Name}" />
+                                                </StackLayout>
+                                                <StackLayout
+                                                    Margin="0,0,0,12"
+                                                    Orientation="Horizontal"
+                                                    Spacing="5">
+                                                    <Label
+                                                        LineBreakMode="TailTruncation"
+                                                        MaxLines="3"
+                                                        Text="{Binding Address}"
+                                                        TextColor="{StaticResource secondary_text}" />
+                                                </StackLayout>
+                                                <Grid ColumnDefinitions="10*, 10*, 30*, 30*" RowDefinitions="Auto">
+                                                    <skiarate:RatingView
+                                                        Grid.Column="0"
+                                                        Margin="0"
+                                                        ColorOn="{StaticResource accent}"
+                                                        Count="1"
+                                                        HeightRequest="25"
+                                                        RatingType="Full"
+                                                        Value="1" />
+                                                    <Label
+                                                        Grid.Column="1"
+                                                        HorizontalOptions="Start"
+                                                        HorizontalTextAlignment="Start"
+                                                        Text="{Binding Rating}"
+                                                        VerticalOptions="Center" />
+                                                    <Label Grid.Column="2" Text="{Binding Refunds[0].Name}" />
+                                                    <Label Grid.Column="3" Text="{Binding Refunds[1].Name}" />
+                                                </Grid>
+
+                                                <StackLayout
+                                                    Orientation="Horizontal"
+                                                    Spacing="2.2"
+                                                    VerticalOptions="EndAndExpand">
+                                                    <Label
+                                                        LineBreakMode="TailTruncation"
+                                                        Text="{Binding Subcategory.Name}"
+                                                        TextColor="{StaticResource secondary_text}" />
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </RefreshView>
+        </StackLayout>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+</ContentPage>

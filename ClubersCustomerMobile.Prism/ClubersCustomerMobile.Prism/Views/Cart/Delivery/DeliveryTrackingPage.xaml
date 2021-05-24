@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubersCustomerMobile.Prism.Views.DeliveryTrackingPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:ClubersCustomerMobile.Prism.Converters"
+    xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="true"
+    prism:ViewModelLocator.AutowireViewModel="True"
+    NavigationPage.HasNavigationBar="False"
+    Visual="Material">
+    <Page.Resources>
+        <local:ToUpperValueConverter x:Key="ToUpperValueConverter" />
+    </Page.Resources>
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout
+                Padding="10"
+                BackgroundColor="{StaticResource background_page}"
+                Orientation="Vertical"
+                VerticalOptions="Start">
+                <StackLayout HeightRequest="130">
+                    <RelativeLayout>
+                        <ffimageloading:CachedImage
+                            Aspect="AspectFill"
+                            BackgroundColor="White"
+                            CacheDuration="50"
+                            DownsampleToViewSize="true"
+                            ErrorPlaceholder="https://clubersblob.blob.core.windows.net/icons/ErrorPlaceholder.png"
+                            HeightRequest="90"
+                            LoadingPlaceholder="https://clubersblob.blob.core.windows.net/icons/ErrorPlaceholder.png"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                                  Property=Width,
+                                                                                  Factor=1}"
+                            RetryCount="3"
+                            RetryDelay="600"
+                            Source="{Binding Establishment.BannerUrl}"
+                            WidthRequest="60" />
+                        <ImageButton
+                            BackgroundColor="White"
+                            CornerRadius="60"
+                            HeightRequest="60"
+                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Property=Width,
+                                                                              Factor=.5,
+                                                                              Constant=-160}"
+                            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                              Property=Y,
+                                                                              Factor=0,
+                                                                              Constant=60}"
+                            Source="{Binding Establishment.LogoUrl}"
+                            WidthRequest="60" />
+                    </RelativeLayout>
+                </StackLayout>
+                <Frame Padding="10" BorderColor="{StaticResource cluberspink}">
+                    <Grid ColumnDefinitions="72, *, 30, 30" RowDefinitions="20, 20, 20">
+                        <ImageButton
+                            Grid.RowSpan="3"
+                            BackgroundColor="White"
+                            CornerRadius="70"
+                            HeightRequest="70"
+                            Source="{Binding DeliveryMen.FrontImageId}"
+                            WidthRequest="70" />
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            Text="{Binding DeliveryMen.Name}" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Text="{Binding DeliveryMen.Vehicle.VehicleType, StringFormat='Repartidor / {0}'}" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Text="{Binding DeliveryMen.Vehicle.Plaque}" />
+                        <Label
+                            Grid.Column="2"
+                            FontFamily="{StaticResource MaterialFontFamily}"
+                            FontSize="Large"
+                            HeightRequest="10"
+                            Text="{Binding MessageIcon}"
+                            VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding MessageDeliveryManCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label
+                            Grid.Column="3"
+                            FontFamily="{StaticResource MaterialFontFamily}"
+                            FontSize="Large"
+                            HeightRequest="10"
+                            Text="{Binding PhoneIcon}"
+                            VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CallDeliveryManCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </Frame>
+                <Frame Padding="10" BorderColor="{StaticResource cluberspink}">
+                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+                        <Label
+                            FontAttributes="Bold"
+                            Text="{Binding Delivery.Status, Converter={StaticResource ToUpperValueConverter}}"
+                            TextColor="Yellow" />
+                        <Label Grid.Column="1" Text="{Binding Delivery.StartDate, StringFormat='{0:dddd d MMMM, yyyy h:mm tt}'}" />
+
+                        <BoxView
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand"
+                            Color="{StaticResource cluberspink}" />
+                        <StackLayout Grid.Row="2" Grid.ColumnSpan="2">
+                            <Label Text="PROGRESO DE COMPRA" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    FontFamily="{StaticResource MaterialFontFamily}"
+                                    FontSize="Large"
+                                    HeightRequest="10"
+                                    Text="{Binding TruckIcon}"
+                                    VerticalTextAlignment="Center" />
+                                <Label Text="{Binding Delivery.DeliveryDetails}" />
+                            </StackLayout>
+                        </StackLayout>
+                        <BoxView
+                            Grid.Row="3"
+                            Grid.ColumnSpan="2"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand"
+                            Color="{StaticResource cluberspink}" />
+                        <Button
+                            Grid.Row="4"
+                            Command="{Binding DeliveryTrackingDetailCommand}"
+                            Text="Detalle" />
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OrderAtHomeCommand}" />
+
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <StackLayout Margin="0,3" HeightRequest="200">
+                    <maps:Map x:Name="MyMap" MapType="Street" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        <ActivityIndicator
+            AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalOptions="Center"
+            IsRunning="{Binding IsRunning}"
+            IsVisible="{Binding IsRunning}"
+            VerticalOptions="Center"
+            Color="{StaticResource cluberspink}" />
+    </AbsoluteLayout>
+</ContentPage>

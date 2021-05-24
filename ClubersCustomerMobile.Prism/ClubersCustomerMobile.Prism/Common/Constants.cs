@@ -36,7 +36,7 @@ namespace ClubersCustomerMobile.Prism
 
         
 
-        public const string GoogleMapsApiKey = "AIzaSyCQuwuhH4ACaaLBOpC-FEQvMSuKEnh86AE";
+        public const string GoogleMapsApiKey = "";
         public const string urlBase = "http://clubers.qagperti.tk/";
         public const string servicePrefix = "api";
 

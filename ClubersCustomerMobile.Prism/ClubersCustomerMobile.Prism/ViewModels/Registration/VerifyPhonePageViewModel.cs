@@ -105,8 +105,8 @@ namespace ClubersCustomerMobile.Prism.ViewModels
         public void GetTwilioTxt()
         {
 
-            const string accountSid = "AC8f070216ca008be649e879e30f3a1010"; // Your Account SId
-            const string authToken = "e907218367b333d715d67f0afc595cc0"; // Your Account AuthToken
+            const string accountSid = "";// Your Account SId
+            const string authToken = ""; // Your Account AuthToken
 
             TwilioClient.Init(accountSid, authToken);
 
